@@ -1,0 +1,29 @@
+export default [
+    {
+        "featureType": "all",
+        "elementType": "all",
+        "stylers": [
+            {
+                "hue": "#ffbb00"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "hue": "#ffbb00"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "hue": "#ffbb00"
+            }
+        ]
+    }
+]

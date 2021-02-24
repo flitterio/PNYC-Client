@@ -1,123 +1,54 @@
 import React, {Component} from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import PlacesAutocomplete, {
-    geocodeByAddress,
-    getLatLng,
-  } from 'react-places-autocomplete';
-  
-require('dotenv').config();
+import {GoogleMap, useLoadScript,  InfoWindow, Marker} from '@react-google-maps/api';
+import { formatRelative } from 'date-fns';
 
-class MapPage extends Component {
-      constructor(props) {
-        super(props);
-        this.state = { 
-            address: '',
+import '@reach/combobox/styles.css';
+import { FaTextHeight } from 'react-icons/fa';
+import mapStyles from './mapStyles';
 
-            showingInfoWindow: false,
-            activeMarker: {},
-            selectedPlace: {},
-            
-            mapCenter:{
-                lat: 40.7831,
-                lng: -73.9712
-            }
-        };
-    }
 
-      handleChange = address => {
-        this.setState({ address });
-      };
-     
-      handleSelect = address => {
-        this.setState({address});
-        geocodeByAddress(address)
-          .then(results => getLatLng(results[0]))
-          .then(latLng => {
-               console.log('Success', latLng);
-
-               this.setState({mapCenter: latLng});
-            })
-          .catch(error => console.error('Error', error));
-      };
-    //   onMarkerClick = (props, marker, e) =>
-    //     this.setState({
-    //       selectedPlace: props,
-    //       activeMarker: marker,
-    //       showingInfoWindow: true
-    //     });
-    
-    //   onMapClicked = (props) => {
-    //     if (this.state.showingInfoWindow) {
-    //       this.setState({
-    //         showingInfoWindow: false,
-    //         activeMarker: null
-    //       })
-    //     }
-    //   };
-    
-      render() {
-        return (
-        <div id="googleMap">
-            <PlacesAutocomplete
-            value={this.state.address}
-            onChange={this.handleChange}
-            onSelect={this.handleSelect}
-        >
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <div>
-                <input
-                    {...getInputProps({
-                        placeholder: 'Search Places ...',
-                        className: 'location-search-input',
-                    })}
-                />
-                <div className="autocomplete-dropdown-container">
-                {loading && <div>Loading...</div>}
-                {suggestions.map(suggestion => {
-                    const className = suggestion.active
-                    ? 'suggestion-item--active'
-                    : 'suggestion-item';
-                    // inline style for demonstration purpose
-                    const style = suggestion.active
-                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                    return (
-                    <div
-                        {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style,
-                        })}
-                    >
-                        <span>{suggestion.description}</span>
-                    </div>
-                    );
-                })}
-                </div>
-            </div>
-            )}
-        </PlacesAutocomplete>
-            <Map google={this.props.google}
-                initialCenter={{
-                    lat: this.state.mapCenter.lat,
-                    lng: this.state.mapCenter.lng
-                }}
-                center={{
-                    lat: this.state.mapCenter.lat,
-                    lng: this.state.mapCenter.lng
-                }}
-                >
-                <Marker 
-                    position={{
-                        lat: this.state.mapCenter.lat,
-                        lng: this.state.mapCenter.lng
-                    }}
-                />
-            </Map>
-          </div>
-        )
-      }
+const libraries = ['places'];
+const mapContainerStyle ={
+    width: '100vw',
+    height: '100vh'
+};
+const center = {
+    lat: 40.7831,
+    lng: -73.9712,
 }
+const options = {
+    styles: mapStyles,
+    disableDefaultUI: true,
+    zoomControl: true
+}
+export default function App() {
+    const {isLoaded, loadError} = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY,
+       libraries
+    });
+    const [markers, setMarkers] = React.useState([]);
 
-export default GoogleApiWrapper({
-    apiKey: ('AIzaSyCDsu4FlzhpUbPlfD90SbJFlF8efWr-fn4')
-  })(MapPage); 
+    if(loadError) return "Error loading maps";
+    if(!isLoaded) return 'Loading Maps';
+    return (
+        <div>
+            <h1 className='pnyc'>PNYC </h1>
+            <GoogleMap 
+                mapContainerStyle={mapContainerStyle}
+                zoom={12}
+                center={center}
+                options={options}
+                onClick={(event) => {
+                    setMarkers(current => [...current, {
+                        lat: event.latLng.lat(),
+                        lng: event.latLng.lng(),
+                        time: new Date()
+                        },
+                    ]);
+                }}
+            >
+                    {markers.map(marker => <Marker key={marker.lat + marker.lng} position={{lat: marker.lat, lng: marker.lng}}/> )}
+            </GoogleMap>
+        </div>
+    )
+}

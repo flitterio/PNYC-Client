@@ -27,6 +27,7 @@
   .nav-menu.active {
     left: 0;
     transition: 350ms;
+    z-index: 10;
   }
   
   .nav-text {
@@ -71,3 +72,5 @@
     margin-left: 16px;
   }
   
+
+  /* Z index for layering */
