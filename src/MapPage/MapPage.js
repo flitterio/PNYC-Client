@@ -119,5 +119,5 @@ class MapPage extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: ('AIzaSyCDsu4FlzhpUbPlfD90SbJFlF8efWr-fn4')
+    apiKey: (process.env.REACT_APP_MAP_API_KEY)
   })(MapPage); 
