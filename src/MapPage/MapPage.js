@@ -40,7 +40,8 @@ export default function App() {
     });
     const [markers, setMarkers] = React.useState([]);
     const [selected, setSelected] = React.useState(null);
-
+    const [currentLocation, setCurrentLocation] = React.useState();
+ 
     const onMapClick = React.useCallback((event) => {
         setMarkers(current => [...current, {
             lat: event.latLng.lat(),
@@ -57,7 +58,7 @@ export default function App() {
 
     const panTo = React.useCallback(({lat, lng}) => {
         mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(14);
+        mapRef.current.setZoom(18);
     }, []);
 
     if(loadError) return "Error loading maps";
@@ -76,6 +77,11 @@ export default function App() {
                 onClick={onMapClick}
                 onLoad={onMapLoad}
             >
+                <Current 
+                    lat={currentLocation.lat}
+                    lng={currentLocation.lng}
+
+                    />
                     {markers.map((marker) => (
                     <Marker 
                         key={marker.lat + marker.lng} 
@@ -106,6 +112,22 @@ export default function App() {
                 </InfoWindow>) : null}
             </GoogleMap>
         </div>
+    )
+}
+
+function Current() {
+
+//NEED TO USE SOMETHING LIKE BELOW CODE TO SETCURRENTLOCATION IN STATE FUNCTION
+
+    // let lat = '';
+    // let lng = '';
+    // navigator.geolocation.getCurrentPosition((position) => {
+    //     lat = position.coords.latitude;
+    //     lng = position.coords.longitude
+    //     },
+    //      () => null, options);
+    return (
+        <img src='./blue.png' alt='blue current location dot' />
     )
 }
 
