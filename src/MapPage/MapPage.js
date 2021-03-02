@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
 import {GoogleMap, useLoadScript,  InfoWindow, Marker} from '@react-google-maps/api';
 import { formatRelative } from 'date-fns';
+import CommentRate from '../CommentRate/CommentRate'
 
 import usePlacesAutocomplete, {
     getGeocode,
@@ -15,6 +17,7 @@ import {
 } from '@reach/combobox';
 
 import '@reach/combobox/styles.css';
+import { FaTextHeight } from 'react-icons/fa';
 import mapStyles from './mapStyles';
 
 
@@ -26,13 +29,12 @@ const mapContainerStyle ={
 const center = {
     lat: 40.7831,
     lng: -73.9712,
-};
+}
 const options = {
     styles: mapStyles,
     disableDefaultUI: true,
     zoomControl: true
-}; 
-
+}
 export default function App() {
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY,
@@ -102,6 +104,21 @@ export default function App() {
                         <div>
                             <h2>Public Bathroom</h2>
                             <p>Added {formatRelative(selected.time, new Date())}</p>
+                            <div class="rate">
+                                <input type="radio" id="star5" className="rate" value="5" />
+                                <label htmlFor="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" className="rate" value="4" />
+                                <label htmlFor="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" className="rate" value="3" />
+                                <label htmlFor="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" className="rate" value="2" />
+                                <label htmlFor="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" className="rate" value="1" />
+                                <label htmlFor="star1" title="text">1 star</label>
+                            </div>
+                            <Link to={`/rate/hashdidURL`}>
+                                Add Rating
+                            </Link>
                         </div>
                 </InfoWindow>) : null}
             </GoogleMap>
