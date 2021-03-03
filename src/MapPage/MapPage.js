@@ -42,6 +42,20 @@ export default function App() {
     });
     const [markers, setMarkers] = React.useState([]);
     const [selected, setSelected] = React.useState(null);
+    const [currentLocation, setCurrentLocation] = React.useState(center);
+    
+    React.useEffect (() => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                setCurrentLocation(
+                    {  
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    }
+                ) 
+            },
+             () => null, options);
+    }, []);
+
 
     const onMapClick = React.useCallback((event) => {
         setMarkers(current => [...current, {
@@ -59,7 +73,7 @@ export default function App() {
 
     const panTo = React.useCallback(({lat, lng}) => {
         mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(14);
+        mapRef.current.setZoom(18);
     }, []);
 
     if(loadError) return "Error loading maps";
@@ -73,11 +87,22 @@ export default function App() {
             <GoogleMap 
                 mapContainerStyle={mapContainerStyle}
                 zoom={12}
-                center={center}
+                center={currentLocation || center}
                 options={options}
                 onClick={onMapClick}
                 onLoad={onMapLoad}
             >
+                <Marker
+                    key='uRHere' 
+                    position= {{lat: currentLocation.lat,
+                    lng : currentLocation.lng}}
+                    icon={{
+                        url:'./blue.png',
+                        scaledSize: new window.google.maps.Size(25, 25),
+                        origin: new window.google.maps.Point(0,0),
+                        anchor: new window.google.maps.Point(15, 15)
+                    }}
+                />
                     {markers.map((marker) => (
                     <Marker 
                         key={marker.lat + marker.lng} 
@@ -126,10 +151,19 @@ export default function App() {
     )
 }
 
+function Current() {
+console.log('current location called')
+
+    return (
+        <img src='./blue.png' alt='blue current location dot' />
+    )
+}
+
 function Locate({panTo}) {
     return (
         <button className='locate' onClick={() => {
             navigator.geolocation.getCurrentPosition((position) => {
+
                 panTo({
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
