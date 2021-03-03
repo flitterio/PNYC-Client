@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom'
 import {GoogleMap, useLoadScript,  InfoWindow, Marker} from '@react-google-maps/api';
 import { formatRelative } from 'date-fns';
 import CommentRate from '../CommentRate/CommentRate'
+//CommentRate will eventually be used as the link to, that maybe should go into the App component... tabling that until I figure out what's good with HashDids
 
 import usePlacesAutocomplete, {
     getGeocode,
@@ -18,7 +19,6 @@ import {
 } from '@reach/combobox';
 
 import '@reach/combobox/styles.css';
-import { FaTextHeight } from 'react-icons/fa';
 import mapStyles from './mapStyles';
 
 
@@ -28,6 +28,7 @@ const mapContainerStyle ={
     height: '100vh'
 };
 const center = {
+    //Manhattan is default center
     lat: 40.7831,
     lng: -73.9712,
 }
@@ -60,6 +61,7 @@ export default function App() {
 
 
     const onMapClick = React.useCallback((event) => {
+        //This eventually should only render the current location then give the user the option to make a bathroom or not, not add it directly to the markers state which will eventually be taken from the back end API anyway
         setMarkers(current => [...current, {
             lat: event.latLng.lat(),
             lng: event.latLng.lng(),
@@ -90,6 +92,7 @@ export default function App() {
                 mapContainerStyle={mapContainerStyle}
                 zoom={12}
                 center={currentLocation || center}
+                // Will that make it default to center if currentLocation is null??
                 options={options}
                 onClick={onMapClick}
                 onLoad={onMapLoad}
@@ -105,6 +108,7 @@ export default function App() {
                         anchor: new window.google.maps.Point(15, 15)
                     }}
                 />
+            {/* This should map the pre-existing markers  */}
                     {markers.map((marker) => (
                     <Marker 
                         key={marker.lat + marker.lng} 
@@ -122,6 +126,7 @@ export default function App() {
                 ))}
 
                 {selected ? (
+                    //this Info Window Will be for markers that already exist.
                     <InfoWindow 
                         position={{lat: selected.lat, lng: selected.lng}} 
                         onCloseClick={() => {
@@ -131,6 +136,7 @@ export default function App() {
                         <div>
                             <h2>Public Bathroom</h2>
                             <p>Added {formatRelative(selected.time, new Date())}</p>
+                            {/* should find way to make this display the correct number of stars instead of radio buttons for them */}
                             <div class="rate">
                                 <input type="radio" id="star5" className="rate" value="5" />
                                 <label htmlFor="star5" title="text">5 stars</label>
@@ -150,14 +156,6 @@ export default function App() {
                 </InfoWindow>) : null}
             </GoogleMap>
         </div>
-    )
-}
-
-function Current() {
-console.log('current location called')
-
-    return (
-        <img src='./blue.png' alt='blue current location dot' />
     )
 }
 
@@ -209,6 +207,7 @@ function Search({panTo}){
                 }
             }}
         >
+            {/* This is for search bar stuff */}
             <ComboboxInput 
                 value={value} 
                 onChange={(e) => {
