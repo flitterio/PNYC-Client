@@ -7,6 +7,7 @@ import CommentRate from '../CommentRate/CommentRate'
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
+
 } from 'use-places-autocomplete';
 import {
     Combobox,
@@ -43,6 +44,7 @@ export default function App() {
     const [markers, setMarkers] = React.useState([]);
     const [selected, setSelected] = React.useState(null);
     const [currentLocation, setCurrentLocation] = React.useState(center);
+
     
     React.useEffect (() => {
             navigator.geolocation.getCurrentPosition((position) => {
@@ -226,3 +228,4 @@ function Search({panTo}){
     </div> 
     )
 }
+
