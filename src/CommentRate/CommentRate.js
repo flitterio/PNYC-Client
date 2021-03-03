@@ -5,6 +5,7 @@ class CommentRate extends Component {
         return(
             <div>
                 comment form
+                code should be adapted from blogful api
             </div>
         );
     };
