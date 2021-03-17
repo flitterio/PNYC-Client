@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import './NewBathroom.css';
+import {bathrooms} from '../bathrooms-helpers';
 
 class NewBathroom extends Component {
     state = {
-        lat: 0,
-        lng: 0,
+        id: '', 
+        lat: this.props.tempLat,
+        lng: this.props.tempLng,
         br_name: '',
         description: '',
         rate: null
@@ -16,10 +18,38 @@ class NewBathroom extends Component {
         });
     };
 
+    toHex = (input) => {
+
+        var hash = "",
+          alphabet = "0123456789abcdef",
+          alphabetLength = alphabet.length;
+      
+        do {
+          hash = alphabet[input % alphabetLength] + hash;
+          input = parseInt(input / alphabetLength, 10);
+        } while (input);
+      
+        this.setState({
+            id: hash,
+            br_name: this.state.br_name
+        });
+      console.log('hash', hash)
+      }
+
     createNewBathroom = (event) => {
         event.preventDefault();
+        const{br_name, description } = event.target
 
         console.log(this.state)
+
+        bathrooms.push({
+            id: this.state.id,
+            lat: this.state.lat,
+            lng: this.state.lng,
+            br_name: br_name,
+            description: description,
+            rate: this.state.rate
+        })
     }
 
     createNewBathroom

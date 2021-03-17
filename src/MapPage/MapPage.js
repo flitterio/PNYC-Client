@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import {GoogleMap, useLoadScript,  InfoWindow, Marker} from '@react-google-maps/api';
 import { formatRelative } from 'date-fns';
 import CommentRate from '../CommentRate/CommentRate'
@@ -171,9 +171,10 @@ export default function App(props) {
                                 <input type="radio" id="star1" className="rate" value="1" />
                                 <label htmlFor="star1" title="text">1 star</label>
                             </div>
-                            <Link to={`/rate/hashdidURL`}>
+                            <Link to={`/rate/:bathroom_id`}>
                                 Add Rating
                             </Link>
+
                         </div>
                 </InfoWindow>) : null}
 
@@ -200,10 +201,17 @@ export default function App(props) {
                             <h2>Do You Want to Add This as a Bathroom?</h2>
                             {/* <p>Added {formatRelative(selected.time, new Date())}</p> */}
                             {/* should find way to make this display the correct number of stars instead of radio buttons for them */}
-                            
-                            <Link to={`/new-bathroom`}>
+                            {/* <Route 
+                                path='/new-bathroom' 
+                                component={() => <NewBathroom tempLat={newPrompt.lat} tempLng={newPrompt.lng} /> } 
+                            /> */}
+                            <Link to={`/new-bathroom`}
+
+                                // onClick={props.handleNewBathroom(newPrompt.lat, newPrompt.lng)}
+                            >
                                 Add Bathroom
                             </Link>
+                            
                         </div>
                     </InfoWindow>
                 </>

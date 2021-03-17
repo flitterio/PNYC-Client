@@ -8,20 +8,22 @@ import SignIn from './SignIn/SignIn';
 import NavRoutes from './NavRoutes/NaveRoutes';
 import {bathrooms} from './bathrooms-helpers';
 
-console.log('bathrooms', bathrooms)
 class App extends Component {
-  state ={
+  state= {
     bathrooms: bathrooms,
     tempLat: 0,
     tempLng: 0,
   }
 
-  // handleNewBathroom(newLat, newLng) {
-  //   this.setState({
-  //     tempLat: newLat,
-  //     tempLng: newLng,
-  //   })
-  // }
+  handleNewBathroom(newLat, newLng) {
+    let tempLat= newLat
+    let tempLng= newLng
+
+    this.setState({
+      tempLat: tempLat,
+      tempLng: tempLng,
+    })
+  }
  
 
   // RenderNavRoutes(){
@@ -45,6 +47,9 @@ class App extends Component {
   // }
 
   RenderMainRoutes() {
+    // const value = {
+
+    // }
     return(
       <>
       <NavRoutes />
@@ -60,7 +65,7 @@ class App extends Component {
           />
           <Route 
             path='/new-bathroom' 
-            component={() => <NewBathroom tempNewBathroom={this.state.tempNewBathroom} /> } 
+            component={() => <NewBathroom tempLat={this.state.tempLat} tempLng={this.state.tempLng}/> } 
           />
 
           <Route path='/sign-in' component={SignIn} />
