@@ -6,8 +6,23 @@ import NewBathroom from './NewBathroom/NewBathroom';
 import Register from './Register/Register';
 import SignIn from './SignIn/SignIn';
 import NavRoutes from './NavRoutes/NaveRoutes';
+import {bathrooms} from './bathrooms-helpers';
 
+console.log('bathrooms', bathrooms)
 class App extends Component {
+  state ={
+    bathrooms: bathrooms,
+    tempLat: 0,
+    tempLng: 0,
+  }
+
+  // handleNewBathroom(newLat, newLng) {
+  //   this.setState({
+  //     tempLat: newLat,
+  //     tempLng: newLng,
+  //   })
+  // }
+ 
 
   // RenderNavRoutes(){
   //   return(
@@ -39,8 +54,15 @@ class App extends Component {
             path='/'
             component={LandingPage}
           />
-          <Route path='/map' component={MapPage} />
-          <Route path='/new-bathroom' component={NewBathroom} />
+          <Route 
+            path='/map' 
+            component={() => <MapPage bathrooms={this.state.bathrooms} handleNewBathroom={this.handleNewBathroom} />} 
+          />
+          <Route 
+            path='/new-bathroom' 
+            component={() => <NewBathroom tempNewBathroom={this.state.tempNewBathroom} /> } 
+          />
+
           <Route path='/sign-in' component={SignIn} />
           <Route path='/register' component={Register} />
       </Switch>
@@ -48,6 +70,7 @@ class App extends Component {
     )
   }
   render(){
+    console.log('this.state.bathrooms', this.state.bathrooms)
     return (
       <div className='App'>
         <header className='App_header'>

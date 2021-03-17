@@ -2,7 +2,29 @@ import React, {Component} from 'react';
 import './NewBathroom.css';
 
 class NewBathroom extends Component {
+    state = {
+        lat: 0,
+        lng: 0,
+        br_name: '',
+        description: '',
+        rate: null
+    };
+
+    handleStars = (event) => {
+        this.setState({
+            rate: event.target.value
+        });
+    };
+
+    createNewBathroom = (event) => {
+        event.preventDefault();
+
+        console.log(this.state)
+    }
+
+    createNewBathroom
     render(){
+        console.log(this.props.tempNewBathroom)
         return(
             <div className='NewBathroom'>
                 <header>
@@ -11,46 +33,106 @@ class NewBathroom extends Component {
                     </h1>
                 </header>
                 <section>
-                    <form action="upload.php" method="post" enctype="multipart/form-data" id="newbathroom">
-                            Select image to upload:
-                            <input type="file" className="fileToUpload" id="fileToUpload" />
-                            <br /><br />
-                        <label htmlFor="location">
+                    <form onSubmit={this.createNewBathroom}>
+                        {/* <label htmlFor="location">
                             Location
                         </label>
                         <input id="location" className="location" type="text" placeholder="location" required />
-                        
+                         */}
                         <label htmlFor="bathroom">
                             Bathroom
                         </label>
                         <input id="bathroom" className="bathroom" type="text" placeholder="bathroom" required />
 
                         <br /><br />
-                            <section class="description">
+                            <section className="description">
                                 <label htmlFor="description">
                                     Description
                                 </label>
                                 <br/>
-                                <input id="description" type="textarea" value="description"/>
+                                <input id="description" type="textarea" />
                         <br /><br />
                             </section>
-                            <div class="rate">
-                                <input type="radio" id="star5" className="rate" value="5" />
-                                <label htmlFor="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" className="rate" value="4" />
-                                <label htmlFor="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" className="rate" value="3" />
-                                <label htmlFor="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" className="rate" value="2" />
-                                <label htmlFor="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" className="rate" value="1" />
-                                <label htmlFor="star1" title="text">1 star</label>
+                            <div className="rate" onChange={this.handleStar}>
+                                <input 
+                                    type="radio" 
+                                    id="star5" 
+                                    className="rate" 
+                                    value='5'
+                                    checked={this.state.rate === 5}
+                                    onChange={this.handleStars} 
+                                />
+                                <label 
+                                    htmlFor="star5" 
+                                    title="text"
+                                >
+                                        5 stars
+                                </label>
+
+                                <input 
+                                    type="radio" 
+                                    id="star4" 
+                                    className="rate" 
+                                    value="4"
+                                    checked={this.state.rate === 4}
+                                    onChange={this.handleStars} 
+                                />
+                                <label 
+                                    htmlFor="star4" 
+                                    title="text"
+                                >
+                                    4 stars
+                                </label>
+
+                                <input 
+                                    type="radio" 
+                                    id="star3" 
+                                    className="rate" 
+                                    value="3" 
+                                    checked={this.state.rate === 3}
+                                    onChange={this.handleStars} 
+                                />
+                                <label 
+                                    htmlFor="star3" 
+                                    title="text"
+                                >
+                                    3 stars
+                                </label>
+
+                                <input 
+                                    type="radio" 
+                                    id="star2" 
+                                    className="rate" 
+                                    value="2" 
+                                    checked={this.state.rate === 2}
+                                    onChange={this.handleStars} 
+                                />
+                                <label 
+                                    htmlFor="star2" 
+                                    title="text"
+                                >
+                                    2 stars
+                                </label>
+
+                                <input 
+                                    type="radio" 
+                                    id="star1" 
+                                    className="rate" 
+                                    value="1" 
+                                    checked={this.state.rate === 1}
+                                    onChange={this.handleStars} 
+                                />
+                                <label 
+                                    htmlFor="star1" 
+                                    title="text"
+                                >
+                                    1 star
+                                </label>
                             </div>
                         <br /><br />
 
                             <input type="submit" value="Add Item" className="submit" />
                             <br /><br />
-        
                     </form>
                 </section>
             </div>

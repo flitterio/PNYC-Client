@@ -37,17 +37,20 @@ const options = {
     disableDefaultUI: true,
     zoomControl: true
 }
-export default function App() {
+export default function App(props) {
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY,
        libraries
     });
-    const [markers, setMarkers] = React.useState([]);
+    const [markers, setMarkers] = React.useState(props.bathrooms);
+    console.log('markers', markers)
     const [selected, setSelected] = React.useState(null);
+    const [newPrompt, setNewPrompt] = React.useState(null);
     const [currentLocation, setCurrentLocation] = React.useState(center);
 
     
     React.useEffect (() => {
+        console.log('checking props', props.bathrooms)
             navigator.geolocation.getCurrentPosition((position) => {
                 setCurrentLocation(
                     {  
@@ -60,14 +63,33 @@ export default function App() {
     }, []);
 
 
+
     const onMapClick = React.useCallback((event) => {
         //This eventually should only render the current location then give the user the option to make a bathroom or not, not add it directly to the markers state which will eventually be taken from the back end API anyway
-        setMarkers(current => [...current, {
-            lat: event.latLng.lat(),
-            lng: event.latLng.lng(),
-            time: new Date()
-            },
-        ]);
+        // return (
+        // <Marker 
+        //     key={event.lat + event.lng} 
+        //     position={{lat: event.lat, lng: event.lng}}
+        //     icon={{
+        //         url:'./pile-of-poo_1f4a9.png',
+        //         scaledSize: new window.google.maps.Size(40, 40),
+        //         origin: new window.google.maps.Point(0,0),
+        //         anchor: new window.google.maps.Point(15, 15)
+        //     }}
+        //     onClick={() => {
+                setNewPrompt({
+                    lat: event.latLng.lat(),
+                    lng: event.latLng.lng() 
+                });
+        //     }}
+        // /> 
+        // )
+        // setMarkers(current => [...current, {
+        //     lat: event.latLng.lat(),
+        //     lng: event.latLng.lng(),
+        //     //time: new Date()
+        //     },
+        // ]);
     }, []);
 
     const mapRef = React.useRef();
@@ -135,9 +157,9 @@ export default function App() {
                     >
                         <div>
                             <h2>Public Bathroom</h2>
-                            <p>Added {formatRelative(selected.time, new Date())}</p>
+                            {/* <p>Added {formatRelative(selected.time, new Date())}</p> */}
                             {/* should find way to make this display the correct number of stars instead of radio buttons for them */}
-                            <div class="rate">
+                            <div className="rate">
                                 <input type="radio" id="star5" className="rate" value="5" />
                                 <label htmlFor="star5" title="text">5 stars</label>
                                 <input type="radio" id="star4" className="rate" value="4" />
@@ -154,6 +176,38 @@ export default function App() {
                             </Link>
                         </div>
                 </InfoWindow>) : null}
+
+                {newPrompt ? (
+                    //new marker
+                <>
+                    <Marker 
+                    key={newPrompt.lat + newPrompt.lng} 
+                    position={{lat: newPrompt.lat, lng: newPrompt.lng}}
+                    icon={{
+                        url:'./pile-of-poo_1f4a9.png',
+                        scaledSize: new window.google.maps.Size(40, 40),
+                        origin: new window.google.maps.Point(0,0),
+                        anchor: new window.google.maps.Point(15, 15)
+                    }}
+                /> 
+                    <InfoWindow 
+                        position={{lat: newPrompt.lat, lng: newPrompt.lng}} 
+                        onCloseClick={() => {
+                            setNewPrompt(null);
+                            }}
+                    >
+                        <div>
+                            <h2>Do You Want to Add This as a Bathroom?</h2>
+                            {/* <p>Added {formatRelative(selected.time, new Date())}</p> */}
+                            {/* should find way to make this display the correct number of stars instead of radio buttons for them */}
+                            
+                            <Link to={`/new-bathroom`}>
+                                Add Bathroom
+                            </Link>
+                        </div>
+                    </InfoWindow>
+                </>
+                ) : null}
             </GoogleMap>
         </div>
     )
