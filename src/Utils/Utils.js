@@ -9,3 +9,9 @@ export function Button({ className, ...props }) {
       <input className={['Input', className].join(' ')} {...props} />
     )
   }
+
+  export function Textarea({ className, ...props }) {
+    return (
+      <textarea className={['Textarea', className].join(' ')} {...props} />
+    )
+  }

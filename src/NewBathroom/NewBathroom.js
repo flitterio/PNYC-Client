@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import './NewBathroom.css';
 import {bathrooms} from '../bathrooms-helpers';
+import {tags} from '../options';
+import Select from 'react-select'
+import Hashids from 'hashids';
 
 class NewBathroom extends Component {
     state = {
@@ -19,42 +22,42 @@ class NewBathroom extends Component {
     };
 
     toHex = (input) => {
+        const hashids = new Hashids()
 
-        var hash = "",
-          alphabet = "0123456789abcdef",
-          alphabetLength = alphabet.length;
-      
-        do {
-          hash = alphabet[input % alphabetLength] + hash;
-          input = parseInt(input / alphabetLength, 10);
-        } while (input);
-      
+        const id = hashids.encode(input) 
+        const numbers = hashids.decode(id)
+
+        console.log('id', id)
+
         this.setState({
-            id: hash,
-            br_name: this.state.br_name
-        });
-      console.log('hash', hash)
+            id: id
+        })
       }
 
     createNewBathroom = (event) => {
         event.preventDefault();
-        const{br_name, description } = event.target
+        const{bathroom, description } = event.target
 
         console.log(this.state)
-
-        bathrooms.push({
+        this.toHex(parseInt(this.state.lat * 100000))
+       let newBathroom = {
             id: this.state.id,
             lat: this.state.lat,
             lng: this.state.lng,
-            br_name: br_name,
-            description: description,
+            br_name: bathroom.value,
+            description: description.value,
             rate: this.state.rate
-        })
+        }
+
+        this.props.handleAddBathroom(newBathroom)
+//FETCH API POST /bathrooms
+        console.log('newBAthroom', newBathroom);
     }
 
     createNewBathroom
     render(){
         console.log(this.props.tempNewBathroom)
+
         return(
             <div className='NewBathroom'>
                 <header>
@@ -63,7 +66,7 @@ class NewBathroom extends Component {
                     </h1>
                 </header>
                 <section>
-                    <form onSubmit={this.createNewBathroom}>
+                    <form onSubmit={this.createNewBathroom} >
                         {/* <label htmlFor="location">
                             Location
                         </label>
@@ -160,6 +163,14 @@ class NewBathroom extends Component {
                                 </label>
                             </div>
                         <br /><br />
+
+                        <Select  
+                        id="tag"
+                        options={tags}
+                        onChange={this.handleTagChange}
+                        isMulti
+                        isClearable/>
+
 
                             <input type="submit" value="Add Item" className="submit" />
                             <br /><br />

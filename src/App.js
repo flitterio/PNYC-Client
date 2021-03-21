@@ -7,24 +7,50 @@ import Register from './Register/Register';
 import SignIn from './SignIn/SignIn';
 import NavRoutes from './NavRoutes/NaveRoutes';
 import {bathrooms} from './bathrooms-helpers';
+import CommentForm from './CommentForm/CommentForm'
+import BathroomInfo from './BathroomInfo/BathroomInfo';
+// import ApiContext from './ApiContext';
 
 class App extends Component {
   state= {
-    bathrooms: bathrooms,
+    bathrooms: [],
+    comments: [],
     tempLat: 0,
     tempLng: 0,
   }
 
-  handleNewBathroom(newLat, newLng) {
-    let tempLat= newLat
-    let tempLng= newLng
+  componentDidMount(){
+    //fetch api from back end
+    this.setState({
+      bathrooms
+    })
+    console.log('bathrooms', bathrooms)
+  }
+
+
+
+  handleNewBathroom = (newLat, newLng)=> {
+    // let tempLat= newLat
+    // let tempLng= newLng
 
     this.setState({
-      tempLat: tempLat,
-      tempLng: tempLng,
+      tempLat: newLat,
+      tempLng: newLng,
     })
   }
  
+  handleAddBathroom = (newBathroom) => {
+    this.setState({
+      bathrooms: [...this.state.bathrooms, newBathroom]
+    })
+  }
+
+  handleAddComment = (newComment) => {
+    this.setState({
+      ...this.state.comments,
+      newComment
+    })
+  }
 
   // RenderNavRoutes(){
   //   return(
@@ -47,9 +73,6 @@ class App extends Component {
   // }
 
   RenderMainRoutes() {
-    // const value = {
-
-    // }
     return(
       <>
       <NavRoutes />
@@ -65,9 +88,17 @@ class App extends Component {
           />
           <Route 
             path='/new-bathroom' 
-            component={() => <NewBathroom tempLat={this.state.tempLat} tempLng={this.state.tempLng}/> } 
+            component={() => <NewBathroom tempLat={this.state.tempLat} tempLng={this.state.tempLng} handleAddBathroom={this.handleAddBathroom}/> } 
           />
-
+          {/* PUTTING THIS IN BATHROOM INFO COMPONENT */}
+          {/* <Route 
+            path='/:bathroom_id/new-comment'
+            component={() => <CommentForm bathrooms={this.state.bathrooms} comments={this.state.comments} handleAddComment={this.handleAddComment}/>}
+            /> */}
+          <Route 
+            path='/:bathroom_id'
+            component={() => <BathroomInfo bathrooms={this.state.bathrooms} comments={this.state.comments} handleAddComment={this.handleAddComment} />}
+            />
           <Route path='/sign-in' component={SignIn} />
           <Route path='/register' component={Register} />
       </Switch>

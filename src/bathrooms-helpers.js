@@ -1,4 +1,4 @@
-export const bathrooms = [
+export let bathrooms = [
     {
         id: 'QXJjaWxsYSBQbGF5Z3JvdW5k',
         br_name: 'Arcilla Playground',

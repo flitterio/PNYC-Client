@@ -14,6 +14,7 @@
     "date-fns": "^2.17.0",
     "dotenv": "^8.2.0",
     "google-maps-react": "^2.0.6",
+    "hashids": "^2.2.8",
     "nodemon": "^2.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -21,6 +22,7 @@
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-select": "^4.2.1",
     "use-places-autocomplete": "^1.9.1",
     "web-vitals": "^1.1.0"
   },

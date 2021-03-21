@@ -2,8 +2,8 @@ import React from 'react';
 import {Link, Route} from 'react-router-dom'
 import {GoogleMap, useLoadScript,  InfoWindow, Marker} from '@react-google-maps/api';
 import { formatRelative } from 'date-fns';
-import CommentRate from '../CommentRate/CommentRate'
-//CommentRate will eventually be used as the link to, that maybe should go into the App component... tabling that until I figure out what's good with HashDids
+import CommentForm from '../CommentForm/CommentForm'
+//CommentForm will eventually be used as the link to, that maybe should go into the App component... tabling that until I figure out what's good with HashDids
 
 import usePlacesAutocomplete, {
     getGeocode,
@@ -43,9 +43,9 @@ export default function App(props) {
        libraries
     });
     const [markers, setMarkers] = React.useState(props.bathrooms);
-    console.log('markers', markers)
     const [selected, setSelected] = React.useState(null);
     const [newPrompt, setNewPrompt] = React.useState(null);
+    const [tempLocation, setTempLocation] = React.useState({});
     const [currentLocation, setCurrentLocation] = React.useState(center);
 
     
@@ -77,7 +77,8 @@ export default function App(props) {
         //         anchor: new window.google.maps.Point(15, 15)
         //     }}
         //     onClick={() => {
-                setNewPrompt({
+            
+                setTempLocation({
                     lat: event.latLng.lat(),
                     lng: event.latLng.lng() 
                 });
@@ -146,7 +147,21 @@ export default function App(props) {
                         }}
                     /> 
                 ))}
-
+{/* keep gettting error that templocation.lat does not exist at times. need to check on this with jake */}
+                <Marker 
+                    key={tempLocation.lat + tempLocation.lng} 
+                    position={{lat: tempLocation.lat, lng: tempLocation.lng}}
+                    icon={{
+                        url:'./pile-of-poo_1f4a9.png',
+                        scaledSize: new window.google.maps.Size(40, 40),
+                        origin: new window.google.maps.Point(0,0),
+                        anchor: new window.google.maps.Point(15, 15)
+                    }}
+                    onClick={() => {
+                        setNewPrompt(tempLocation);
+                        
+                    }}
+                /> 
                 {selected ? (
                     //this Info Window Will be for markers that already exist.
                     <InfoWindow 
@@ -156,7 +171,9 @@ export default function App(props) {
                             }}
                     >
                         <div>
-                            <h2>Public Bathroom</h2>
+                            <Link to={`/${selected.id}`}>
+                                <h2>{selected.br_name}</h2>
+                            </Link>
                             {/* <p>Added {formatRelative(selected.time, new Date())}</p> */}
                             {/* should find way to make this display the correct number of stars instead of radio buttons for them */}
                             <div className="rate">
@@ -171,8 +188,8 @@ export default function App(props) {
                                 <input type="radio" id="star1" className="rate" value="1" />
                                 <label htmlFor="star1" title="text">1 star</label>
                             </div>
-                            <Link to={`/rate/:bathroom_id`}>
-                                Add Rating
+                            <Link to={`/${selected.id}`}>
+                                More Info
                             </Link>
 
                         </div>
@@ -180,21 +197,11 @@ export default function App(props) {
 
                 {newPrompt ? (
                     //new marker
-                <>
-                    <Marker 
-                    key={newPrompt.lat + newPrompt.lng} 
-                    position={{lat: newPrompt.lat, lng: newPrompt.lng}}
-                    icon={{
-                        url:'./pile-of-poo_1f4a9.png',
-                        scaledSize: new window.google.maps.Size(40, 40),
-                        origin: new window.google.maps.Point(0,0),
-                        anchor: new window.google.maps.Point(15, 15)
-                    }}
-                /> 
                     <InfoWindow 
                         position={{lat: newPrompt.lat, lng: newPrompt.lng}} 
                         onCloseClick={() => {
                             setNewPrompt(null);
+                            setTempLocation(null);
                             }}
                     >
                         <div>
@@ -206,15 +213,14 @@ export default function App(props) {
                                 component={() => <NewBathroom tempLat={newPrompt.lat} tempLng={newPrompt.lng} /> } 
                             /> */}
                             <Link to={`/new-bathroom`}
-
-                                // onClick={props.handleNewBathroom(newPrompt.lat, newPrompt.lng)}
+                            //<Link to={`/new-bathroom/${newPrompt.lat}+${newPrompt.lng}`}
+                                 onClick={ () => props.handleNewBathroom(newPrompt.lat, newPrompt.lng)}
                             >
                                 Add Bathroom
                             </Link>
                             
                         </div>
                     </InfoWindow>
-                </>
                 ) : null}
             </GoogleMap>
         </div>
