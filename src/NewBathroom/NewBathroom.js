@@ -57,7 +57,7 @@ class NewBathroom extends Component {
     createNewBathroom
     render(){
         console.log(this.props.tempNewBathroom)
-
+//NEED TO MAKE MULTIPLE LABELS FOR DIFFERENT RATINGS? OR SHOULD i JUST DO ONE RATING AND LEAVE IT AT THAT????
         return(
             <div className='NewBathroom'>
                 <header>

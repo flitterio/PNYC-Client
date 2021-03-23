@@ -201,7 +201,7 @@ export default function App(props) {
                         position={{lat: newPrompt.lat, lng: newPrompt.lng}} 
                         onCloseClick={() => {
                             setNewPrompt(null);
-                            setTempLocation(null);
+                            setTempLocation({});
                             }}
                     >
                         <div>

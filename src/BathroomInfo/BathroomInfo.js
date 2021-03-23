@@ -4,6 +4,8 @@ import CommentForm from '../CommentForm/CommentForm'
 
  class BathroomInfo extends Component {
     render(){
+        // SHOULD LOAD DATA FOR ONE BATHROOM
+        //GET THIS DATA FROM BATHROOMS STATE??? Jake
         return(
             <>
                 <div> Bathroom Info Page </div>
