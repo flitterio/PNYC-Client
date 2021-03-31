@@ -29,9 +29,7 @@ class NewBathroom extends Component {
 
         console.log('id', id)
 
-        this.setState({
-            id: id
-        })
+        return id;
       }
 
     createNewBathroom = (event) => {
@@ -39,9 +37,10 @@ class NewBathroom extends Component {
         const{bathroom, description } = event.target
 
         console.log(this.state)
-        this.toHex(parseInt(this.state.lat * 100000))
+        const hexId = this.toHex(parseInt(this.state.lat * 100000))
+        
        let newBathroom = {
-            id: this.state.id,
+            id: hexId,
             lat: this.state.lat,
             lng: this.state.lng,
             br_name: bathroom.value,

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-//import TokenService from '../services/token-service';
-//import AuthApiService from '../services/auth-api-service';
+import TokenService from '../services/token-service';
+import AuthApiService from '../services/auth-api-service';
 import {Link} from 'react-router-dom';
 import {Button, Input } from '../Utils/Utils';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,46 +24,46 @@ class SignIn extends Component {
         this.setState({passwordShown: !this.state.passwordShown })
     }
 
-    // handleSigninSuccess = () => {
-    //     const { location, history } = this.props
-    //     const destination = (location.state || {})
-    //     .from || '/my-closet'
-    //     history.push(destination)
-    //     window.location.reload()
-    //   }
+    handleSigninSuccess = () => {
+        const { location, history } = this.props
+        const destination = (location.state || {})
+        .from || '/map'
+        history.push(destination)
+        window.location.reload()
+      }
 
-    // handleSubmitBasicAuth = ev => {
-    //     ev.preventDefault()
-    //     const {username, password } = ev.target
+    handleSubmitBasicAuth = ev => {
+        ev.preventDefault()
+        const {username, password } = ev.target
 
-    //     TokenService.saveAuthToken(
-    //         TokenService.makeBasicAuthToken(username.value, password.value)
-    //     )
+        TokenService.saveAuthToken(
+            TokenService.makeBasicAuthToken(username.value, password.value)
+        )
 
-    //     username.value = ''
-    //     password.value =''
-    //     this.handleSigninSuccess()
-    // }
+        username.value = ''
+        password.value =''
+        this.handleSigninSuccess()
+    }
 
-    // handleSubmitJwtAuth = ev => {
-    //        ev.preventDefault()
-    //        this.setState({ error: null })
-    //        const { username, password } = ev.target
+    handleSubmitJwtAuth = ev => {
+           ev.preventDefault()
+           this.setState({ error: null })
+           const { username, password } = ev.target
         
-    //        AuthApiService.postSignin({
-    //          username: username.value,
-    //          password: password.value,
-    //        })
-    //          .then(res => {
-    //            username.value = ''
-    //            password.value = ''
-    //            TokenService.saveAuthToken(res.authToken)
-    //            this.handleSigninSuccess()
-    //          })
-    //          .catch(res => {
-    //            this.setState({ error: res.error })
-    //          })
-    //      }
+           AuthApiService.postSignin({
+             username: username.value,
+             password: password.value,
+           })
+             .then(res => {
+               username.value = ''
+               password.value = ''
+               TokenService.saveAuthToken(res.authToken)
+               this.handleSigninSuccess()
+             })
+             .catch(res => {
+               this.setState({ error: res.error })
+             })
+         }
 
     render(){
         const {error } = this.state

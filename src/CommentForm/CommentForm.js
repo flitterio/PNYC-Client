@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BathroomApiService from '../bathroom-api-service'
+import BathroomsApiService from '../services/bathrooms-api-service'
 import { Button, Textarea } from '../Utils/Utils'
 
 
@@ -17,7 +17,7 @@ export default class  extends Component {
     const {bathroom_id} = this.props.match.params
     const {bathrooms} = this.props
     const { text } = ev.target
-    BathroomApiService.postComment(bathroom_id, text.value)
+    BathroomsApiService.postComment(bathroom_id, text.value)
       .then(this.props.handleAddComment(newComment))
       .then(() => {
         text.value = ''

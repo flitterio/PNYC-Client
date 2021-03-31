@@ -18,14 +18,14 @@ export const SidebarData = [
         path: '/new-bathroom',
         cName:'nav-text'
     },
-    {
-        title: 'Sign In',
-        path: '/sign-in',
-        cName:'nav-text'
-    },
-    {
-        title: 'Register',
-        path: '/register',
-        cName:'nav-text'
-    },
+    // {
+    //     title: 'Sign In',
+    //     path: '/sign-in',
+    //     cName:'nav-text'
+    // },
+    // {
+    //     title: 'Register',
+    //     path: '/register',
+    //     cName:'nav-text'
+    // },
 ]

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Input, Button} from '../Utils/Utils';
-//import AuthApiService from '../services/auth-api-service';
+import AuthApiService from '../services/auth-api-service';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 //import './Register.css';
@@ -20,35 +20,33 @@ togglePasswordVisiblity = () =>{
 onRegistrationSuccess = () => {
     window.location.href='/sign-in'
 }
-    // handleSubmit = ev => {
-    //     ev.preventDefault()
+    handleSubmit = ev => {
+        ev.preventDefault()
  
-    //     const { fname, lname, username, password, email } = ev.target
+        const { fname, lname, username, password} = ev.target
     
-    //     this.setState({ error: null })
-    //     AuthApiService.postUser({
-    //         username: username.value,
-    //         password: password.value,
-    //         fname: fname.value,
-    //         lname: lname.value,
-    //         email: email.value,
-    //     })
+        this.setState({ error: null })
+        AuthApiService.postUser({
+            username: username.value,
+            password: password.value,
+            fname: fname.value,
+            lname: lname.value,
+        })
     
 
-    //     .then(user => {
-    //         fname.value = ''
-    //         lname.value = ''
-    //         username.value = ''
-    //         password.value = ''
-    //         email.vaulue = ''
-    //         this.onRegistrationSuccess()
-    //     })
-    //     .catch(res => {
-    //         this.setState({ error: res.error })
-    //     })
+        .then(user => {
+            fname.value = ''
+            lname.value = ''
+            username.value = ''
+            password.value = ''
+            this.onRegistrationSuccess()
+        })
+        .catch(res => {
+            this.setState({ error: res.error })
+        })
 
         
-    //   }
+      }
     
 
     render(){
@@ -72,7 +70,7 @@ onRegistrationSuccess = () => {
                         First Name: 
                     </label>
                 </div>
-                <div class="col-75">
+                <div className="col-75">
                     <Input 
                         id="fname" 
                         name="fname" 
@@ -84,29 +82,20 @@ onRegistrationSuccess = () => {
                         Last Name: 
                     </label>
                 </div>
-                <div class="col-75">
+                <div className="col-75">
                     <Input 
                         id="lname" 
                         name="lname" 
                         type="text" placeholder="Last Name" required/>
                 </div>
                 <br /><br />
-                <div className='col-25'>
-                    <label htmlFor="email">
-                        Email:  
-                    </label>
-                </div>
-                <div class="col-75">
-                    <Input 
-                        id="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
-                </div>
-                <br /><br />
+                
                 <div className='col-25'>
                     <label htmlFor="username">
                         Username:  
                     </label>
                 </div>
-                <div class="col-75">
+                <div className="col-75">
                     <Input 
                         id="username"  name="username" type="text" placeholder="Username" required/> 
                 </div>

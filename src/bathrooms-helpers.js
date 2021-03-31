@@ -1,3 +1,6 @@
+export const findBathroom = (bathrooms, bathroomId) =>
+    bathrooms.find(bathroom => bathroom.id === bathroomId)
+    
 export let bathrooms = [
     {
         id: 'QXJjaWxsYSBQbGF5Z3JvdW5k',

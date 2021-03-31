@@ -1,6 +1,6 @@
 //THESE ALL USE CONFIG. COMMENTING OUT UNTIL ACTUAL API IS SET UP
 
-//import config from '../config'
+// import config from './config'
 
 // const BathroomApiService = {
 //     getBathrooms() {
