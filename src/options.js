@@ -1,8 +1,8 @@
 export const tags = [
-    {value:'Handicap Accessible', label: 'Handicap Accessible'},
-    {value:'Family', label: 'Family'},
-    {value:'Stalls', label: 'Stalls'},
-    {value: 'Privacy', label: 'Privacy'},
-    {value:'Gender Neutral', label:'Gender Neutral'},
-    {value:'Baby Changing Table', label:'Baby Changing Table'}
+    {value:'ishandicap', label: 'Handicap Accessible' },
+    {value:'isfamily', label: 'Family'},
+    {value:'hasstalls', label: 'Stalls'},
+    {value: 'isprivate', label: 'Private'},
+    {value:'gender_neutral', label:'Gender Neutral'},
+    {value:'hasbaby_table', label:'Baby Changing Table'}
 ]

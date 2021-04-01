@@ -16,8 +16,10 @@
 //       },
 //       getBathroom(bathroomId) {
 //         return fetch(`${config.API_ENDPOINT}/bathrooms/${bathroomId}`, {
-//           headers: {
-//           },
+//               method: 'GET',
+//               headers: {
+//                   'content-type': 'application/json',
+//               }
 //         })
 //           .then(res =>
 //             (!res.ok)
@@ -45,6 +47,7 @@
 //           method: 'POST',
 //           headers: {
 //             'content-type': 'application/json',
+//             'Authorization': `Bearer ${TokenService.getAuthToken()}`
 //           },
 //           body: JSON.stringify(newComment),
 //         })
@@ -56,4 +59,4 @@
 //       }
 // }
 
-// export default BathroomApiService
+//  export default BathroomApiService

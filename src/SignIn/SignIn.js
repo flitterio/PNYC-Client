@@ -26,10 +26,13 @@ class SignIn extends Component {
 
     handleSigninSuccess = () => {
         const { location, history } = this.props
-        const destination = (location.state || {})
-        .from || '/map'
-        history.push(destination)
-        window.location.reload()
+        // const destination = (location.state || {})
+        // .from || '/map'
+        const {bathroom_id = 'map'} = location.state.redirectUrl
+        console.log('redirectUrl', bathroom_id)
+        console.log('props', this.props)
+        history.push(`/${bathroom_id}`)
+        // window.location.reload()
       }
 
     handleSubmitBasicAuth = ev => {

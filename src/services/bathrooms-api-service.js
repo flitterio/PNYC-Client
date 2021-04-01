@@ -1,6 +1,6 @@
 import { useImperativeHandle } from 'react';
 import config from '../config';
-import TokenService from '../services/token-service';
+import TokenService from './token-service';
 
     const BathroomsApiService = {
 
@@ -20,7 +20,7 @@ import TokenService from '../services/token-service';
       )
   
   },
-  
+
     getBathrooms() {
         return fetch(`${config.API_ENDPOINT}/bathrooms`, {
           headers: {
@@ -34,8 +34,10 @@ import TokenService from '../services/token-service';
       },
       getBathroom(bathroomId) {
         return fetch(`${config.API_ENDPOINT}/bathrooms/${bathroomId}`, {
-          headers: {
-          },
+              method: 'GET',
+              headers: {
+                  'content-type': 'application/json',
+              }
         })
           .then(res =>
             (!res.ok)
@@ -63,6 +65,7 @@ import TokenService from '../services/token-service';
           method: 'POST',
           headers: {
             'content-type': 'application/json',
+            'Authorization': `Bearer ${TokenService.getAuthToken()}`
           },
           body: JSON.stringify(newComment),
         })

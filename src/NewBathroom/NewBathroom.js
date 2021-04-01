@@ -12,7 +12,14 @@ class NewBathroom extends Component {
         lng: this.props.tempLng,
         br_name: '',
         description: '',
-        rate: null
+        rate: null,
+        ishandicap: false,
+        isfamily: false,
+        hasstalls: false,
+        isprivate: false,
+        gender_neutral: false,
+        hasbaby_table: false,
+
     };
 
     handleStars = (event) => {
@@ -31,6 +38,27 @@ class NewBathroom extends Component {
 
         return id;
       }
+    
+    handleTagChange = (event) => {
+        let tempTags = event.map(e => e.value)
+        console.log('tags selected', tempTags)
+        //should figure out a way to filter so that if tag is in tempTags array, state should be set to true, if it is not there it should be false
+
+        //if(temptags.contains('tag'){
+        //      this.setstate({
+        //          tag: !this.state.tag
+        //      })
+        // })
+        event.map(e => {
+            let temp = e.value
+            this.setState(
+                
+            {
+                temp : !this.state.temp
+            })
+        })
+        console.log('state', this.state)
+    }
 
     createNewBathroom = (event) => {
         event.preventDefault();

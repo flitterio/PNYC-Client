@@ -126,7 +126,7 @@ class App extends Component {
             /> */}
           <Route
             path='/:bathroom_id'
-            component={() => <BathroomInfo bathrooms={this.state.bathrooms} comments={this.state.comments} handleAddComment={this.handleAddComment} />}
+            component={BathroomInfo}
             />
       </Switch>
       </>
