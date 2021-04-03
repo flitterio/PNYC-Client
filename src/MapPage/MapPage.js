@@ -176,7 +176,7 @@ export default function App(props) {
                             </Link>
                             {/* <p>Added {formatRelative(selected.time, new Date())}</p> */}
                             {/* should find way to make this display the correct number of stars instead of radio buttons for them */}
-                            <div className="rate">
+                            {/* <div className="rate">
                                 <input type="radio" id="star5" className="rate" value="5" />
                                 <label htmlFor="star5" title="text">5 stars</label>
                                 <input type="radio" id="star4" className="rate" value="4" />
@@ -187,7 +187,7 @@ export default function App(props) {
                                 <label htmlFor="star2" title="text">2 stars</label>
                                 <input type="radio" id="star1" className="rate" value="1" />
                                 <label htmlFor="star1" title="text">1 star</label>
-                            </div>
+                            </div> */}
                             <Link to={`/${selected.id}`}>
                                 More Info
                             </Link>

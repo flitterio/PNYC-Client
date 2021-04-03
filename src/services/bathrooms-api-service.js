@@ -4,7 +4,7 @@ import TokenService from './token-service';
 
     const BathroomsApiService = {
 
-  postbathroom(newBathroom) {
+  postBathroom(newBathroom) {
       return fetch(`${config.API_ENDPOINT}/bathrooms/`, {
           method: 'POST',
           headers: {

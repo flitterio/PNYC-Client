@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import './NewBathroom.css';
-import {bathrooms} from '../bathrooms-helpers';
+//import {bathrooms} from '../bathrooms-helpers';
 import {tags} from '../options';
 import Select from 'react-select'
 import Hashids from 'hashids';
+import ReactStars from 'react-rating-stars-component';
+import BathroomsApiService from '../services/bathrooms-api-service'
 
 class NewBathroom extends Component {
     state = {
@@ -22,11 +24,11 @@ class NewBathroom extends Component {
 
     };
 
-    handleStars = (event) => {
-        this.setState({
-            rate: event.target.value
-        });
-    };
+    // handleStars = (event) => {
+    //     this.setState({
+    //         rate: event.target.value
+    //     });
+    // };
 
     toHex = (input) => {
         const hashids = new Hashids()
@@ -42,22 +44,73 @@ class NewBathroom extends Component {
     handleTagChange = (event) => {
         let tempTags = event.map(e => e.value)
         console.log('tags selected', tempTags)
-        //should figure out a way to filter so that if tag is in tempTags array, state should be set to true, if it is not there it should be false
 
-        //if(temptags.contains('tag'){
-        //      this.setstate({
-        //          tag: !this.state.tag
-        //      })
-        // })
-        event.map(e => {
-            let temp = e.value
-            this.setState(
-                
-            {
-                temp : !this.state.temp
+        if (tempTags.includes("ishandicap")) {
+            this.setState({
+                ishandicap: true
             })
-        })
+        } else {
+            this.setState ({
+                ishandicap: false
+            })
+        }
+
+        if (tempTags.includes("hasstalls")) {
+            this.setState({
+                hasstalls: true
+            })
+        } else {
+            this.setState ({
+                hasstalls: false
+            })
+        }
+
+        if (tempTags.includes("isfamily")) {
+            this.setState({
+                isfamily: true
+            })
+        } else {
+            this.setState ({
+                isfamily: false
+            })
+        }
+
+        if (tempTags.includes("isprivate")) {
+            this.setState({
+                isprivate: true
+            })
+        } else {
+            this.setState ({
+                isprivate: false
+            })
+        }
+
+        if (tempTags.includes("gender_neutral")) {
+            this.setState({
+                gender_neutral: true
+            })
+        } else {
+            this.setState ({
+                gender_neutral: false
+            })
+        }
+        
+        if (tempTags.includes("hasbaby_table")) {
+            this.setState({
+                hasbaby_table: true
+            })
+        } else {
+            this.setState ({
+                hasbaby_table: false
+            })
+        }
         console.log('state', this.state)
+    }
+
+    ratingChanged = (newRating) => {
+        this.setState({
+            rate: newRating
+        })
     }
 
     createNewBathroom = (event) => {
@@ -73,18 +126,28 @@ class NewBathroom extends Component {
             lng: this.state.lng,
             br_name: bathroom.value,
             description: description.value,
-            rate: this.state.rate
+            rate: this.state.rate,
+            ishandicap: this.state.ishandicap,
+            isfamily: this.state.isfamily,
+            hasstalls: this.state.hasstalls,
+            isprivate: this.state.isprivate,
+            gender_neutral: this.state.gender_neutral,
+            hasbaby_table: this.state.hasbaby_table,
         }
-
+        
         this.props.handleAddBathroom(newBathroom)
-//FETCH API POST /bathrooms
-        console.log('newBAthroom', newBathroom);
+
+        BathroomsApiService.postBathroom(newBathroom)
+            .then(
+                this.props.history.push('/map')
+            )
+
+
     }
 
     createNewBathroom
     render(){
         console.log(this.props.tempNewBathroom)
-//NEED TO MAKE MULTIPLE LABELS FOR DIFFERENT RATINGS? OR SHOULD i JUST DO ONE RATING AND LEAVE IT AT THAT????
         return(
             <div className='NewBathroom'>
                 <header>
@@ -113,7 +176,7 @@ class NewBathroom extends Component {
                                 <input id="description" type="textarea" />
                         <br /><br />
                             </section>
-                            <div className="rate" onChange={this.handleStar}>
+                            {/* <div className="rate" onChange={this.handleStar}>
                                 <input 
                                     type="radio" 
                                     id="star5" 
@@ -188,7 +251,13 @@ class NewBathroom extends Component {
                                 >
                                     1 star
                                 </label>
-                            </div>
+                            </div> */}
+             <ReactStars
+                count={5}
+                onChange={this.ratingChanged}
+                size={24}
+                activeColor="#ffd700"
+            />   
                         <br /><br />
 
                         <Select  

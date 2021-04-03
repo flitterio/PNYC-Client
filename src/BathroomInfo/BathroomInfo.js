@@ -5,6 +5,7 @@ import CommentForm from '../CommentForm/CommentForm'
 import BathroomsApiService from '../services/bathrooms-api-service';
 import TokenService from '../services/token-service';
 import PopUp from '../PopUp/PopUp';
+import ReactStars from 'react-rating-stars-component';
 //import {findBathroom} from '../bathrooms-helpers'
 
  class BathroomInfo extends Component {
@@ -65,7 +66,7 @@ import PopUp from '../PopUp/PopUp';
     if(this.state.commentForm === true){
       return (
         <div>
-            <form className='new-rate' onSubmit={this.handleAddRate()}>
+            {/* <form className='new-rate' onSubmit={this.handleAddRate()}>
                 <input type="radio" id="star5" className="rate" value="5" />
                 <label htmlFor="star5" title="text">5 stars</label>
                 <input type="radio" id="star4" className="rate" value="4" />
@@ -82,13 +83,26 @@ import PopUp from '../PopUp/PopUp';
                 >
                     Rate
                 </button>
-            </form>
+            </form> */}
+        <form onSubmit={this.handleAddRate}>
+            <ReactStars
+                count={5}
+                onChange={this.ratingChanged}
+                size={24}
+                activeColor="#ffd700"
+            />
+            <button 
+                id='new-rate'
+                className='new-rate'
+            >
+                Rate
+            </button>
+        </form>
         <CommentForm 
             bathrooms={this.props.bathrooms} 
             comments={this.props.comments} 
             handleAddComment={this.props.handleAddComment}
             />
-        
         </div>
     )}
     }

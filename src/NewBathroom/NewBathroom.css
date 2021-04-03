@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
 }
@@ -43,11 +43,11 @@
 
 /*stars and design*/
 
-
+/* 
 nav, footer{
     background-color: gray;
 }
 
 form{
     border-color: black;
-}
+} */ 
