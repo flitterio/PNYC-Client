@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import BathroomsApiService from '../services/bathrooms-api-service'
 import { Button, Textarea } from '../Utils/Utils'
 
-
-
 export default class  extends Component {
   state ={
     text: '',
+    error: null,
   }
 
   handleSubmit = ev => {
@@ -14,14 +13,21 @@ export default class  extends Component {
     const newComment = {
       text: this.state.text
     }
-    const {bathroom_id} = this.props.match.params
-    const {bathrooms} = this.props
+    const {bathroom_id} = this.props
+    const bathroomId = bathroom_id.bathroom_id
+    console.log('bathroom id', bathroomId)
     const { text } = ev.target
-    BathroomsApiService.postComment(bathroom_id, text.value)
-      .then(this.props.handleAddComment(newComment))
+    BathroomsApiService.postComment(bathroomId, text.value)
+      //.then(this.props.handleAddComment(newComment))
+
       .then(() => {
+        console.log('added comment', newComment)
         text.value = ''
       })
+      .catch(error => {
+        console.error(error)
+        this.setState({error})
+    })
       //unsure what to do for this error
      // .catch(this.context.setError)
   }

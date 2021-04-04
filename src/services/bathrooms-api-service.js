@@ -23,15 +23,20 @@ import TokenService from './token-service';
 
     getBathrooms() {
         return fetch(`${config.API_ENDPOINT}/bathrooms`, {
+          method: 'GET',
           headers: {
-          },
-        })
-          .then(res =>
-            (!res.ok)
-              ? res.json().then(e => Promise.reject(e))
-              : res.json()
-          )
-      },
+              'content-type': 'application/json',
+          }
+      })
+  
+      .then(res => {
+          if(!res.ok) {
+          return res.json().then(error => Promise.reject(error))
+          }
+          return res.json();
+      })
+    },
+
       getBathroom(bathroomId) {
         return fetch(`${config.API_ENDPOINT}/bathrooms/${bathroomId}`, {
               method: 'GET',
@@ -45,10 +50,13 @@ import TokenService from './token-service';
               : res.json()
           )
       },
-      getBathroomComments(bathroomId) {
-        return fetch(`${config.API_ENDPOINT}/bathrooms/${bathroomId}/comments`, {
-          headers: {
-          },
+
+      getBathroomComments(bathroom_id) {
+        return fetch(`${config.API_ENDPOINT}/bathrooms/${bathroom_id}/comments`, {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json',
+          }
         })
           .then(res =>
             (!res.ok)
@@ -56,6 +64,7 @@ import TokenService from './token-service';
               : res.json()
           )
       },
+      
       postComment(bathroom_id, text) {
         const newComment = {
             bathroom_id: bathroom_id,
@@ -74,6 +83,22 @@ import TokenService from './token-service';
               ? res.json().then(e => Promise.reject(e))
               : res.json()
           )
+      },
+
+      getUserRates(user_id) {
+        return fetch(`${config.API_ENDPOINT}/users/${user_id}/rates`, {
+          method: 'GET',
+          headers: {
+              'content-type': 'application/json',
+              'Authorization': `Bearer ${TokenService.getAuthToken()}`
+          }
+      })
+  
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
       }
 }
 

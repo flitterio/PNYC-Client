@@ -18,6 +18,11 @@ export const SidebarData = [
         path: '/new-bathroom',
         cName:'nav-text'
     },
+    {
+        title: 'My Profile',
+        path: '/my-profile',
+        cName: 'nav-text'
+    }
     // {
     //     title: 'Sign In',
     //     path: '/sign-in',

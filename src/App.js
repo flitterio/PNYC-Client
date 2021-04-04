@@ -6,13 +6,13 @@ import NewBathroom from './NewBathroom/NewBathroom';
 import Register from './Register/Register';
 import SignIn from './SignIn/SignIn';
 import NavRoutes from './NavRoutes/NavRoutes';
-import {bathrooms} from './bathrooms-helpers';
-import CommentForm from './CommentForm/CommentForm'
 import BathroomInfo from './BathroomInfo/BathroomInfo';
 import PrivateRoute from './Utils/PrivateRoute';
 import PublicOnlyRoute from './Utils/PublicOnlyRoute';
 import config from './config';
-// import ApiContext from './ApiContext';
+import MyProfile from './MyProfile/MyProfile'
+import BathroomsApiService from './services/bathrooms-api-service';
+
 
 class App extends Component {
   state= {
@@ -38,6 +38,7 @@ class App extends Component {
         }
         return res.json();
     })
+  
     .then(bathrooms => {
         this.setState(
             {bathrooms: bathrooms}
@@ -119,6 +120,12 @@ class App extends Component {
             path='/new-bathroom' 
             component={() => <NewBathroom tempLat={this.state.tempLat} tempLng={this.state.tempLng} handleAddBathroom={this.handleAddBathroom}/> } 
           />
+
+          <PrivateRoute
+              path="/my-profile" 
+              component={MyProfile}
+          />
+
           {/* PUTTING THIS IN BATHROOM INFO COMPONENT */}
           {/* <Route 
             path='/:bathroom_id/new-comment'

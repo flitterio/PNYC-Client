@@ -138,9 +138,6 @@ class NewBathroom extends Component {
         this.props.handleAddBathroom(newBathroom)
 
         BathroomsApiService.postBathroom(newBathroom)
-            .then(
-                this.props.history.push('/map')
-            )
 
 
     }

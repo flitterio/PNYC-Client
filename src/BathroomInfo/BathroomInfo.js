@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { Link} from 'react-router-dom';
-import config from '../config';
+// import { Link} from 'react-router-dom';
+// import config from '../config';
+import { FontAwesomeIcon } from 'react-fontawesome'
 import CommentForm from '../CommentForm/CommentForm'
 import BathroomsApiService from '../services/bathrooms-api-service';
 import TokenService from '../services/token-service';
@@ -15,12 +16,13 @@ import ReactStars from 'react-rating-stars-component';
          comments: [],
          commentForm: false,
          popUp: false,
+         rate: null,
      }
-    //  static defaultProps = {
-    //      match: {
-    //          params: {}
-    //      }
-    //  }
+     static defaultProps = {
+         match: {
+             params: {}
+         }
+     }
      componentDidMount(){
          console.log('has auth token', TokenService.hasAuthToken())
         const {bathroom_id} = this.props.match.params
@@ -34,17 +36,41 @@ import ReactStars from 'react-rating-stars-component';
             console.error(error)
             this.setState({error})
         })
-        BathroomsApiService.getBathroomComments(bathroom_id)
-        .then(bathroomComments => {
-            this.setState(
-                {comments: bathroomComments}
-            )
-        })
-        .catch(error => {
-            console.error(error)
-            this.setState({error})
-        })
+        // BathroomsApiService.getBathroomComments(bathroom_id)
+        // .then(newComments => {
+        //     this.setState(
+        //        {comments: [...comments, newComments]} 
+        //     )
+        // })
+        // .catch(error => {
+        //     console.error(error)
+        //     this.setState({error})
+        // })
     }
+
+    //organize comments
+    // bathroomComments = (comments) => {
+    //     return (
+    //       <ul className='BathroomPage__comment-list'>
+    //         {comments.map(comment =>
+    //           <li key={comment.id} className='BathroomPage__comment'>
+    //             <p className='BathroomPage__comment-text'>
+    //               <FontAwesomeIcon
+    //                 size='lg'
+    //                 icon='quote-left'
+    //                 className='BathroomPage__comment-icon blue'
+    //               />
+    //               {comment.text}
+    //             </p>
+    //             <p className='BathroomPage__comment-user'>
+    //               {comment.user.fname} {comment.user.lname}
+    //             </p>
+    //           </li>
+    //         )}
+    //       </ul>
+    //     )
+    //   }
+
     togglePop = () => {
         this.setState(
             {popUp: !this.state.popUp}
@@ -59,31 +85,31 @@ import ReactStars from 'react-rating-stars-component';
             this.togglePop()
         }
     }
-    handleAddRate = () => {
-        console.log('handleaddrate called')
+
+    ratingChanged = (newRating) => {
+        this.setState({
+            rate: newRating
+        })
     }
+
+    handleAddRate = (e) => {
+        e.preventDefault();
+        if (this.state.rate !== null) {
+            BathroomsApiService.getUserRates()
+            .then(rates => {
+                console.log(rates)
+            })
+        }
+    }
+    // handleAddComment = (newComment) => {
+    //     this.setState({
+    //         comments: [...comments, newComment]
+    //     })
+    // }
     showCommentForm = () => {
     if(this.state.commentForm === true){
       return (
         <div>
-            {/* <form className='new-rate' onSubmit={this.handleAddRate()}>
-                <input type="radio" id="star5" className="rate" value="5" />
-                <label htmlFor="star5" title="text">5 stars</label>
-                <input type="radio" id="star4" className="rate" value="4" />
-                <label htmlFor="star4" title="text">4 stars</label>
-                <input type="radio" id="star3" className="rate" value="3" />
-                <label htmlFor="star3" title="text">3 stars</label>
-                <input type="radio" id="star2" className="rate" value="2" />
-                <label htmlFor="star2" title="text">2 stars</label>
-                <input type="radio" id="star1" className="rate" value="1" />
-                <label htmlFor="star1" title="text">1 star</label>
-                <button 
-                    id='new-rate'
-                    className='new-rate'
-                >
-                    Rate
-                </button>
-            </form> */}
         <form onSubmit={this.handleAddRate}>
             <ReactStars
                 count={5}
@@ -99,9 +125,9 @@ import ReactStars from 'react-rating-stars-component';
             </button>
         </form>
         <CommentForm 
-            bathrooms={this.props.bathrooms} 
-            comments={this.props.comments} 
-            handleAddComment={this.props.handleAddComment}
+            comments={this.state.comments} 
+            bathroom_id={this.props.match.params}
+            handleAddComment={this.handleAddComment}
             />
         </div>
     )}
@@ -109,30 +135,58 @@ import ReactStars from 'react-rating-stars-component';
 
   
     render(){ 
-        const { bathroom } = this.state
+        const { bathroom, comments} = this.state
+        //console.log('comments', this.state.comments[0])
+        
         // const {bathrooms} = this.props
         // const {bathroomId} = this.props.match.params
         // const bathroom = findBathroom(bathrooms, bathroomId)
         // console.log('bathroom', bathroom)
         // SHOULD LOAD DATA FOR ONE BATHROOM
         //GET THIS DATA FROM BATHROOMS STATE??? Jake
-        return(
-            <>
-                <h1> Bathroom Info Page </h1>
-                <h2>{bathroom.br_name}</h2>
-                <h3> Description: </h3>
-                <p>{bathroom.description}</p>
-                <h3>User added? </h3>
-                <p>{bathroom.category}</p>
-                    <br />
-                    <button onClick={this.commentButtonClicked}>
-                        Add Comments
-                    </button>
-                <div>
-                   {this.showCommentForm()}
-                   {this.state.popUp ? <PopUp toggle={this.togglePop} bathroomId={this.props.match.params} /> : null}
-                </div>
-            </>
+    return(
+        <>
+            <h1> Bathroom Info Page </h1>
+            <h2>{bathroom.br_name}</h2>
+            <h3> Description: </h3>
+            <p>{bathroom.description}</p>
+            <br />
+            <button onClick={(e) => {
+                e.preventDefault() 
+                window.location.href = `https://www.google.com/maps/dir/?api=1&destination=${bathroom.lat},${bathroom.lng}`}
+            }>
+                     Directions </button>
+            
+            <h3>User added? </h3>
+            <p>{bathroom.category}</p>
+                <br />
+            
+            <ul className='BathroomPage__comment-list'>
+                {comments.map(comment =>
+                <li key={comment.id} className='BathroomPage__comment'>
+                    <p className='BathroomPage__comment-text'>
+                    <FontAwesomeIcon
+                        size='lg'
+                        icon='quote-left'
+                        className='BathroomPage__comment-icon blue'
+                    />
+                    {comment.text}
+                    </p>
+                    <p className='BathroomPage__comment-user'>
+                    {comment.user.username} 
+                    </p>
+                </li>
+                )}
+            </ul>
+
+                <button onClick={this.commentButtonClicked}>
+                    Add Comments
+                </button>
+            <div>
+                {this.showCommentForm()}
+                {this.state.popUp ? <PopUp toggle={this.togglePop} bathroomId={this.props.match.params} /> : null}
+            </div>
+        </>
         )
     }
  }
