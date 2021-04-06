@@ -1,0 +1,12 @@
+html{
+    background-color: #F5F5F5;
+}
+
+.App{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+
+@media all and (min-width: 800px){ /*fullscreen design*/
+
+}

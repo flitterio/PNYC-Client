@@ -6,6 +6,7 @@ import Select from 'react-select'
 import Hashids from 'hashids';
 import ReactStars from 'react-rating-stars-component';
 import BathroomsApiService from '../services/bathrooms-api-service'
+import './NewBathroom.css'
 
 class NewBathroom extends Component {
     state = {
@@ -148,20 +149,19 @@ class NewBathroom extends Component {
         return(
             <div className='NewBathroom'>
                 <header>
-                    <h1>
+                    <h1 className='newBathroom_title'>
                         New Bathroom 
                     </h1>
                 </header>
                 <section>
-                    <form onSubmit={this.createNewBathroom} >
-                        {/* <label htmlFor="location">
-                            Location
-                        </label>
-                        <input id="location" className="location" type="text" placeholder="location" required />
-                         */}
+                    <form   
+                        className='newBathroom_form' 
+                        onSubmit={this.createNewBathroom} >
+
                         <label htmlFor="bathroom">
                             Bathroom
                         </label>
+                        <br />
                         <input id="bathroom" className="bathroom" type="text" placeholder="bathroom" required />
 
                         <br /><br />
@@ -173,82 +173,6 @@ class NewBathroom extends Component {
                                 <input id="description" type="textarea" />
                         <br /><br />
                             </section>
-                            {/* <div className="rate" onChange={this.handleStar}>
-                                <input 
-                                    type="radio" 
-                                    id="star5" 
-                                    className="rate" 
-                                    value='5'
-                                    checked={this.state.rate === 5}
-                                    onChange={this.handleStars} 
-                                />
-                                <label 
-                                    htmlFor="star5" 
-                                    title="text"
-                                >
-                                        5 stars
-                                </label>
-
-                                <input 
-                                    type="radio" 
-                                    id="star4" 
-                                    className="rate" 
-                                    value="4"
-                                    checked={this.state.rate === 4}
-                                    onChange={this.handleStars} 
-                                />
-                                <label 
-                                    htmlFor="star4" 
-                                    title="text"
-                                >
-                                    4 stars
-                                </label>
-
-                                <input 
-                                    type="radio" 
-                                    id="star3" 
-                                    className="rate" 
-                                    value="3" 
-                                    checked={this.state.rate === 3}
-                                    onChange={this.handleStars} 
-                                />
-                                <label 
-                                    htmlFor="star3" 
-                                    title="text"
-                                >
-                                    3 stars
-                                </label>
-
-                                <input 
-                                    type="radio" 
-                                    id="star2" 
-                                    className="rate" 
-                                    value="2" 
-                                    checked={this.state.rate === 2}
-                                    onChange={this.handleStars} 
-                                />
-                                <label 
-                                    htmlFor="star2" 
-                                    title="text"
-                                >
-                                    2 stars
-                                </label>
-
-                                <input 
-                                    type="radio" 
-                                    id="star1" 
-                                    className="rate" 
-                                    value="1" 
-                                    checked={this.state.rate === 1}
-                                    onChange={this.handleStars} 
-                                />
-                                <label 
-                                    htmlFor="star1" 
-                                    title="text"
-                                >
-                                    1 star
-                                </label>
-                            </div> */}
              <ReactStars
                 count={5}
                 onChange={this.ratingChanged}
@@ -263,7 +187,7 @@ class NewBathroom extends Component {
                         onChange={this.handleTagChange}
                         isMulti
                         isClearable/>
-
+                    <br />
 
                             <input type="submit" value="Add Item" className="submit" />
                             <br /><br />

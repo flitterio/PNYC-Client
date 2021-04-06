@@ -22,6 +22,11 @@ export const SidebarData = [
         title: 'My Profile',
         path: '/my-profile',
         cName: 'nav-text'
+    },
+    {
+        title: 'BAthroom DAta',
+        path: '/format-bathroom',
+        cName: 'nav-text'
     }
     // {
     //     title: 'Sign In',

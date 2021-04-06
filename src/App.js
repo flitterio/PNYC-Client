@@ -12,7 +12,8 @@ import PublicOnlyRoute from './Utils/PublicOnlyRoute';
 import config from './config';
 import MyProfile from './MyProfile/MyProfile'
 import BathroomsApiService from './services/bathrooms-api-service';
-
+import FormatBathrooms from './BathroomData/FormatBathrooms';
+import './App.css';
 
 class App extends Component {
   state= {
@@ -131,10 +132,15 @@ class App extends Component {
             path='/:bathroom_id/new-comment'
             component={() => <CommentForm bathrooms={this.state.bathrooms} comments={this.state.comments} handleAddComment={this.handleAddComment}/>}
             /> */}
+             <Route
+            path='/format-bathroom'
+            component={FormatBathrooms}
+            />
           <Route
             path='/:bathroom_id'
             component={BathroomInfo}
             />
+         
       </Switch>
       </>
     )

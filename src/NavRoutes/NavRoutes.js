@@ -50,6 +50,7 @@ function NavRoutes() {
     return (
         <>
         <IconContext.Provider value={{color: '#fff'}}>
+          <Link to='/map' className="pnyc"> PNYC </Link>
             <div className='navbar'>
                 <Link to='#' className='menu-bars'>
                     <FaIcons.FaBars onClick={showSidebar} />

@@ -14,13 +14,13 @@ export default class User extends React.Component {
                 <h2>Your Profile</h2>
                 <h3>Name:</h3>
                     <p>{fname} {lname}</p>
-                <ul>
+                {/* <ul>
                     {favorites.map(favorite => {
                         <li id={favorite.id}>
                             {favorite.bathroom_id}
                         </li>
                     })}
-                </ul>
+                </ul> */}
             </div>
         )
     }

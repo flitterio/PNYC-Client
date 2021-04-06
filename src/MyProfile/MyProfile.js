@@ -5,13 +5,14 @@ import User from '../User/User';
 import { Link } from 'react-router-dom';
 import TokenService from '../services/token-service';
 import config from '../config';
-
+import DeleteUser from '../DeleteUser/DeleteUser';
 
 class MyProfile extends Component {
     state={
         error: null,
         user:[],
         favorites: [],
+        deleteWarning: false,
     }
     static defaultProps ={
         match: {
@@ -43,6 +44,12 @@ class MyProfile extends Component {
         this.setState({error})
         })
 
+    }
+
+    deleteWarning = (e) => {
+        const current = this.state.deleteWarning;
+        const newVal = !current;
+      this.setState({deleteWarning: newVal});
     }
 
     getFavorites = () => {
@@ -83,7 +90,12 @@ class MyProfile extends Component {
                     password = {user.password}
                     favorites = {user.favorites}
                         />
+                 <section className="DeleteUser" >
+                    <input id="delete" type='button' value='DELETE USER' onClick={this.deleteWarning} style={{visibility: !this.state.deleteWarning ? 'visible' : 'hidden'}}/> 
+                    
+                    {this.state.deleteWarning ? <DeleteUser user={this.state.user} /> : null}
 
+                </section>
             </div>
         </article>
         )

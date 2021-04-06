@@ -1,0 +1,14 @@
+.landing{
+    margin: 15px 30px;
+    font-size: 20px;
+}
+
+.maplink{
+    font-size: 30px;
+    color: #909090;
+    text-decoration: none;
+}
+
+.maplink:hover{
+    color: #A93F55;
+}

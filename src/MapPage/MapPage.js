@@ -2,8 +2,6 @@ import React from 'react';
 import {Link, Route} from 'react-router-dom'
 import {GoogleMap, useLoadScript,  InfoWindow, Marker} from '@react-google-maps/api';
 import { formatRelative } from 'date-fns';
-import CommentForm from '../CommentForm/CommentForm'
-//CommentForm will eventually be used as the link to, that maybe should go into the App component... tabling that until I figure out what's good with HashDids
 
 import usePlacesAutocomplete, {
     getGeocode,
