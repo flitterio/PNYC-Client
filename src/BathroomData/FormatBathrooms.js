@@ -13,14 +13,20 @@ geocodeIt = address => {
     .then(latLng => console.log('Success', latLng))
     .catch(error => console.error('Error', error));
 };
-//NEED TO FIGURE OUT IF THIS CAN BE USED WITHOUT PLACESAUTOCOMPLETE TAG
+
+componentDidMount() {
+    this.state.list = bathroomList
+}
+
 
 render(){
-    const list = bathroomList
-return(
-    <div>
-    </div>
-)}
+    const {list} = this.state
+    console.log(list.map(address => this.geocodeIt(address.location)))
+    return(
+        <div>
+            {this.geocodeIt}
+        </div>
+    )}
 
 }
 

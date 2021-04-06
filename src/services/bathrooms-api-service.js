@@ -85,13 +85,14 @@ import TokenService from './token-service';
           )
       },
 
-      getUserRates(user_id) {
-        return fetch(`${config.API_ENDPOINT}/users/${user_id}/rates`, {
+     postRates(rating) {
+        return fetch(`${config.API_ENDPOINT}/rates`, {
           method: 'GET',
           headers: {
               'content-type': 'application/json',
               'Authorization': `Bearer ${TokenService.getAuthToken()}`
-          }
+          },
+          body: JSON.stringify(rating)
       })
   
       .then(res =>
