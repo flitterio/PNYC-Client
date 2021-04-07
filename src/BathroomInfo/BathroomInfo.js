@@ -68,7 +68,7 @@ import ReactStars from 'react-rating-stars-component';
                             {comment.text}
                         </p>
                         <p className='BathroomPage__comment-user'>
-                            {comment.user.fname} {comment.user.lname}
+                            {comment.user.username} 
                         </p>
                     </li>
                 )
@@ -107,11 +107,11 @@ import ReactStars from 'react-rating-stars-component';
             this.setState({error})
         })
     }
-    // handleAddComment = (newComment) => {
-    //     this.setState({
-    //         comments: [...comments, newComment]
-    //     })
-    // }
+    handleAddComment = (newComment) => {
+        this.setState({
+            comments: [...this.state.comments, newComment]
+        })
+    }
     showCommentForm = () => {
     if(this.state.commentForm === true){
       return (
@@ -192,7 +192,7 @@ import ReactStars from 'react-rating-stars-component';
             </div>
 
                 <button onClick={this.commentButtonClicked}>
-                    Add Comments
+                    Rate/ Add Comments
                 </button>
             <div>
                 {this.showCommentForm()}

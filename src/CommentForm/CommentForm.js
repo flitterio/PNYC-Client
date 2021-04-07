@@ -20,7 +20,8 @@ export default class  extends Component {
     BathroomsApiService.postComment(bathroomId, text.value)
       //.then(this.props.handleAddComment(newComment))
 
-      .then(() => {
+      .then((newComment) => {
+        this.props.handleAddComment(newComment)
         console.log('added comment', newComment)
         text.value = ''
       })

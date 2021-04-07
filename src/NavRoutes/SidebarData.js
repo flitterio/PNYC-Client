@@ -13,29 +13,15 @@ export const SidebarData = [
         path: '/map',
         cName:'nav-text'
     },
-    {
-        title: 'New Bathroom',
-        path: '/new-bathroom',
-        cName:'nav-text'
-    },
+    // {
+    //     title: 'New Bathroom',
+    //     path: '/new-bathroom',
+    //     cName:'nav-text'
+    // },
     {
         title: 'My Profile',
         path: '/my-profile',
         cName: 'nav-text'
     },
-    {
-        title: 'BAthroom DAta',
-        path: '/format-bathroom',
-        cName: 'nav-text'
-    }
-    // {
-    //     title: 'Sign In',
-    //     path: '/sign-in',
-    //     cName:'nav-text'
-    // },
-    // {
-    //     title: 'Register',
-    //     path: '/register',
-    //     cName:'nav-text'
-    // },
+
 ]
