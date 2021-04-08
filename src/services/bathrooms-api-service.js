@@ -85,14 +85,18 @@ import TokenService from './token-service';
           )
       },
 
-     postRates(rating) {
+     postRates(bathroom_id, rating) {
+       const newRate = {
+         bathroom_id,
+         rating
+       }
         return fetch(`${config.API_ENDPOINT}/rates`, {
-          method: 'GET',
+          method: 'POST',
           headers: {
               'content-type': 'application/json',
               'Authorization': `Bearer ${TokenService.getAuthToken()}`
           },
-          body: JSON.stringify(rating)
+          body: JSON.stringify(newRate)
       })
   
       .then(res =>

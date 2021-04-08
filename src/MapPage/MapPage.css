@@ -1,0 +1,12 @@
+.search{
+    width: 13rem;
+    margin-left: -30px;
+    margin-right: 50px;
+    font-size: 10px;
+}
+
+@media all and (min-width: 800px){ /*fullscreen design*/
+    .search{
+        width:auto;
+    }
+}

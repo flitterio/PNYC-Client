@@ -1,6 +1,6 @@
 .landing{
     margin: 15px 30px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .maplink{
@@ -11,4 +11,10 @@
 
 .maplink:hover{
     color: #A93F55;
+}
+
+@media all and (min-width: 800px){ /*fullscreen design*/
+.landing{
+    font-size: 20px;
+}
 }

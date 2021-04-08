@@ -8,13 +8,14 @@
   
   .menu-bars {
     margin-left: 2rem;
+    margin-right: 0px;
     font-size: 2rem;
     background: none;
   }
   
   .nav-menu {
     background-color: #909090;
-    width: 250px;
+    width: 150px;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -34,7 +35,9 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 8px 0px 8px 16px;
+    /* padding:  0px 20px; */
+    margin-right: 50px;
+    margin-left: -10px;
     list-style: none;
     height: 60px;
   }
@@ -47,7 +50,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 0px 20px;
     border-radius: 4px;
   }
   
@@ -62,7 +65,7 @@
   
   .navbar-toggle {
     background-color: #909090;
-    width: 100%;
+    width: 50%;
     height: 80px;
     display: flex;
     justify-content: start;
@@ -80,3 +83,14 @@
   }
 
   /* Z index for layering */
+
+  @media all and (min-width: 800px){ /*fullscreen design*/
+    .nav-menu{
+      width: 250px;
+    }
+    .nav-text {
+      padding: 8px 0px 8px 16px;
+      height: 60px;
+    }
+    
+  }

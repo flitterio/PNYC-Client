@@ -39,7 +39,7 @@ class DeleteUser extends Component {
 
 
     cancelDelete = (e) => {
-        window.location.href='/my-profile'
+       this.props.deleteWarning(e)
     }
 
     render(){

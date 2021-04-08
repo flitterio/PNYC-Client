@@ -42,6 +42,7 @@ onRegistrationSuccess = () => {
             this.onRegistrationSuccess()
         })
         .catch(res => {
+            console.log('res.error', res.error)
             this.setState({ error: res.error })
         })
 
@@ -111,7 +112,9 @@ onRegistrationSuccess = () => {
                     <Input 
                         type={this.state.passwordShown ? "text" : "password"} 
                         id="password" name="password" 
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" required />
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" 
+                        title="Password must be between 8 and 72 characters, contain one upper case, lower case, number and special character, and cannot start or end with empty spaces."
+                        required />
                   </div>
                   <div>
                     <i onClick={this.togglePasswordVisiblity}>{eye}</i>{" "}

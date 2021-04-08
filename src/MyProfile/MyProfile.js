@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 //import ApiContext from '../ApiContext';
-//import './MyProfile.css';
+import './MyProfile.css';
 import User from '../User/User';
 import { Link } from 'react-router-dom';
 import TokenService from '../services/token-service';
@@ -93,7 +93,7 @@ class MyProfile extends Component {
                  <section className="DeleteUser" >
                     <input id="delete" type='button' value='DELETE USER' onClick={this.deleteWarning} style={{visibility: !this.state.deleteWarning ? 'visible' : 'hidden'}}/> 
                     
-                    {this.state.deleteWarning ? <DeleteUser user={this.state.user} /> : null}
+                    {this.state.deleteWarning ? <DeleteUser user={this.state.user} deleteWarning={this.deleteWarning}/> : null}
 
                 </section>
             </div>

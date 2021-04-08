@@ -2,6 +2,7 @@ import React from 'react';
 import {Link, Route} from 'react-router-dom'
 import {GoogleMap, useLoadScript,  InfoWindow, Marker} from '@react-google-maps/api';
 import { formatRelative } from 'date-fns';
+import './MapPage.css';
 
 import usePlacesAutocomplete, {
     getGeocode,
@@ -23,7 +24,7 @@ import mapStyles from './mapStyles';
 const libraries = ['places'];
 const mapContainerStyle ={
     width: '100vw',
-    height: '100vh'
+    height: '89vh'
 };
 const center = {
     //Manhattan is default center
@@ -108,7 +109,7 @@ export default function App(props) {
             <Search panTo={panTo}/>
             <Locate panTo={panTo}/>
 
-            <h1 className='pnyc'>PNYC </h1>
+            <Link to='/' className='pnyc'>PNYC </Link>
             <GoogleMap 
                 mapContainerStyle={mapContainerStyle}
                 zoom={12}
@@ -123,7 +124,7 @@ export default function App(props) {
                     position= {{lat: currentLocation.lat,
                     lng : currentLocation.lng}}
                     icon={{
-                        url:'./blue.png',
+                        url:'./blue-dot.png',
                         scaledSize: new window.google.maps.Size(25, 25),
                         origin: new window.google.maps.Point(0,0),
                         anchor: new window.google.maps.Point(15, 15)
@@ -172,20 +173,6 @@ export default function App(props) {
                             <Link to={`/${selected.id}`}>
                                 <h2>{selected.br_name}</h2>
                             </Link>
-                            {/* <p>Added {formatRelative(selected.time, new Date())}</p> */}
-                            {/* should find way to make this display the correct number of stars instead of radio buttons for them */}
-                            {/* <div className="rate">
-                                <input type="radio" id="star5" className="rate" value="5" />
-                                <label htmlFor="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" className="rate" value="4" />
-                                <label htmlFor="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" className="rate" value="3" />
-                                <label htmlFor="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" className="rate" value="2" />
-                                <label htmlFor="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" className="rate" value="1" />
-                                <label htmlFor="star1" title="text">1 star</label>
-                            </div> */}
                             <Link to={`/${selected.id}`}>
                                 More Info
                             </Link>
@@ -203,15 +190,10 @@ export default function App(props) {
                             }}
                     >
                         <div>
-                            <h2>Do You Want to Add This as a Bathroom?</h2>
-                            {/* <p>Added {formatRelative(selected.time, new Date())}</p> */}
-                            {/* should find way to make this display the correct number of stars instead of radio buttons for them */}
-                            {/* <Route 
-                                path='/new-bathroom' 
-                                component={() => <NewBathroom tempLat={newPrompt.lat} tempLng={newPrompt.lng} /> } 
-                            /> */}
+                            <h2>Do You Want to Add This as a Bathroom?
+                            </h2>
+
                             <Link to={`/new-bathroom`}
-                            //<Link to={`/new-bathroom/${newPrompt.lat}+${newPrompt.lng}`}
                                  onClick={ () => props.handleNewBathroom(newPrompt.lat, newPrompt.lng)}
                             >
                                 Add Bathroom
@@ -237,7 +219,7 @@ function Locate({panTo}) {
             },
              () => null, options);
         }}>
-            <img src='./current-location.png' alt ='find current location' />
+            <img src='./current-location-trans1.png' alt ='find current location' />
         </button>
     )
 }
@@ -273,7 +255,6 @@ function Search({panTo}){
                 }
             }}
         >
-            {/* This is for search bar stuff */}
             <ComboboxInput 
                 value={value} 
                 onChange={(e) => {
