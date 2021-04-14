@@ -149,7 +149,7 @@ export default class BathroomInfo extends Component {
     }
 
     deleteBathroom = () => {
-        const {bathroom_id} = this.props.match.params
+        const bathroom_id = this.state.bathroom.id
         fetch(`${config.API_ENDPOINT}/bathrooms/${bathroom_id}`, {
             method: 'DELETE',
             headers: {
