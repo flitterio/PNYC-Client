@@ -16,11 +16,12 @@ render() {
             pathname: '/sign-in',
             state:{redirectUrl: this.props.bathroomId}
             }}
+            className='popup_text'
             >
                 Sign In</Link> to use this feature!</p>
         
         <p>New Here? 
-            <Link to='/register'>Register for a free account</Link>
+            <Link to='/register' className='popup_text'> Register for a free account</Link>
         </p>
     </div>
    </div>

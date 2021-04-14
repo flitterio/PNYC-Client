@@ -20,8 +20,10 @@
   }
   
   button {
-    border-radius: 10px;
+    border-radius: 5px;
+    font-size: 15px;
     background-color: #E4DBC2;
+    border: solid #909090;
     outline: none;
   }
   
@@ -40,6 +42,8 @@
   
   .modal_content {
     background-color: white;
+    font-size: 30px;
+    text-align: center;
     position: absolute;
     z-index: 10;
     top: 20%;
@@ -47,8 +51,15 @@
     width: 40%;
     padding: 20px;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid #a93f55;
   } 
+
+  .popup_text{
+    color: #a93f55;
+  }
+  .popup_text:hover{
+    color: #909090;
+  }
   
   .close {
     color: Black;

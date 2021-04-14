@@ -6,15 +6,7 @@
     zoom: 1.5;
   }
   
-  button {
-    border-radius: 10px;
-    background-color: #E4DBC2;
-    outline: none;
-  }
-  
-  button:hover {
-    background-color: #ffe9aa;
-  } 
+
   
   /* .modal {
     display: none;

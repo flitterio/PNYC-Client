@@ -1,55 +1,53 @@
 import React, {Component} from 'react';
 // import { Link} from 'react-router-dom';
-import config from '../config';
+// import config from '../config';
 import { FontAwesomeIcon } from 'react-fontawesome'
 import CommentForm from '../CommentForm/CommentForm'
 import BathroomsApiService from '../services/bathrooms-api-service';
 import TokenService from '../services/token-service';
 import PopUp from '../PopUp/PopUp';
 import ReactStars from 'react-rating-stars-component';
-import './BathroomInfo.css';
+import './BathroomInfo.css'
 
-
-export default class BathroomInfo extends Component {
-    state = {
-        error: null,
-        bathroom: {},
-        user: this.props.user,
-        comments: [],
-        commentForm: false,
-        popUp: false,
-        rating: null,
-    }
-    static defaultProps = {
-        match: {
-            params: {}
-        }
-    }
-    componentDidMount(){
-        console.log('has auth token', TokenService.hasAuthToken())
-    const {bathroom_id} = this.props.match.params
-    BathroomsApiService.getBathroom(bathroom_id)
-    .then(bathroomInfo => {
-        this.setState(
-            {bathroom: bathroomInfo}
-        )
-    })
-    .catch(error => {
-        console.error(error)
-        this.setState({error})
-    })
-    BathroomsApiService.getBathroomComments(bathroom_id)
-    .then(newComments => {
-        console.log('newComments', newComments)
-        console.log('this', this)
-        this.setState(
-            {comments:  newComments} 
-        )
-    })
-    .catch(error => {
-        console.error(error)
-        this.setState({error})
-    })
+ export default class BathroomInfo extends Component {
+     state = {
+         error: null,
+         bathroom: {},
+         comments: [],
+         commentForm: false,
+         popUp: false,
+         rating: null,
+     }
+     static defaultProps = {
+         match: {
+             params: {}
+         }
+     }
+     componentDidMount(){
+         console.log('has auth token', TokenService.hasAuthToken())
+        const {bathroom_id} = this.props.match.params
+        BathroomsApiService.getBathroom(bathroom_id)
+        .then(bathroomInfo => {
+            this.setState(
+                {bathroom: bathroomInfo}
+            )
+        })
+        .catch(error => {
+            console.error(error)
+            this.setState({error})
+        })
+        BathroomsApiService.getBathroomComments(bathroom_id)
+        .then(newComments => {
+            console.log('newComments', newComments)
+            console.log('this', this)
+            this.setState(
+               {comments:  newComments} 
+            )
+        })
+        .catch(error => {
+            console.error(error)
+            this.setState({error})
+        })
     }
 
     //organize comments
@@ -75,16 +73,15 @@ export default class BathroomInfo extends Component {
                     </li>
                 )
                 }
-            </ul>
+          </ul>
         )}
-    }
+      }
 
     togglePop = () => {
         this.setState(
             {popUp: !this.state.popUp}
         )
     }
-
     commentButtonClicked = (e) => {
         e.preventDefault();
         if(TokenService.hasAuthToken()){
@@ -122,7 +119,7 @@ export default class BathroomInfo extends Component {
     }
     showCommentForm = () => {
     if(this.state.commentForm === true){
-        return (
+      return (
         <div>
         <form onSubmit={this.handleAddRate}>
             <ReactStars
@@ -137,7 +134,6 @@ export default class BathroomInfo extends Component {
             >
                 Rate
             </button>
-            <br /><br />
         </form>
         <CommentForm 
             comments={this.state.comments} 
@@ -148,87 +144,64 @@ export default class BathroomInfo extends Component {
     )}
     }
 
-    deleteBathroom = () => {
-        const bathroom_id = this.state.bathroom.id
-        fetch(`${config.API_ENDPOINT}/bathrooms/${bathroom_id}`, {
-            method: 'DELETE',
-            headers: {
-              'content-type': 'application/json',
-              'Authorization': `Bearer ${TokenService.getAuthToken()}`
-            },
-          })
-          .then( res => {
-            if(!res.ok) 
-              return res.json().then(e =>  Promise.reject(e))
-                return res
-          })
-          .then(() => {
-            window.location.href='/map'
-            })
-          .catch(error => {
-            console.error({error})
-          })
-    }
-
-    showDeleteBathroom = () => {
-        console.log('bathroom', this.state.bathroom)
-        if(this.state.bathroom.user_id === this.state.user.id){
-            return(
-                <button onClick={this.deleteBathroom}>
-                    Delete Bathroom
-                </button>
-            )
-        }
-    }
-
+  
     render(){ 
         console.log('bathroom', this.state.bathroom)
         const { bathroom} = this.state
     return(
         <div className='BathroomInfoPage_main'>
-            <div className='BathroomPage_item'>
+            <div className='title'>
                 <h1> Bathroom Info Page </h1>
-                <h2>{bathroom.br_name}</h2>
-                <h3> Description: </h3>
-                    <p>{bathroom.description}</p>
-                <h3> Rating: </h3>
-                    {/* <ReactStars 
-                        count={bathroom.rate}
-                        size={35}
-                        color="#ffd700"
-                        edit={false}
-                        half={true}
-                    /> */}
-                    <p>{bathroom.rate}</p>
-
-                <button onClick={(e) => {
-                    e.preventDefault() 
-                    window.location.href = `https://www.google.com/maps/dir/?api=1&destination=${bathroom.lat},${bathroom.lng}`}
-                }>
-                    Directions
-                </button>
+                <h2 className='bathroom_name'>{bathroom.br_name}</h2>
                 
-                <h3>User added? </h3>
-                <p>{bathroom.category}</p>
-                    <br />
+                <button onClick={(e) => {
+                        e.preventDefault() 
+                        window.location.href = `https://www.google.com/maps/dir/?api=1&destination=${bathroom.lat},${bathroom.lng}`}
+                        }
+                        className='directions'
+                    >
+                        Directions
+                    </button>
             </div>
-            <div className='BathroomPage_item'>
-                <div className='BathroomComments'>
-                    <h3>Comments:</h3>
-                    {this.bathroomComments()}
+            <div className = 'BathroomInfo_info'>
+                <div className='BathroomPage_item'>
+   
+                    <h3 className='description'> Description: </h3>
+                        <p className='BathroomInfo_paragraph'>{bathroom.description}</p>
+                    <h3 className='description'> Rating: </h3>
+                        {/* <ReactStars 
+                            count={bathroom.rate}
+                            size={35}
+                            color="#ffd700"
+                            edit={false}
+                            half={true}
+                        /> */}
+                            <p className='BathroomInfo_paragraph'>{bathroom.rate}</p>
+                    
+                    <h3 className='description'>
+                        User added?: 
+                    </h3>
+                        {bathroom.category === 'user_added' ? <p className='BathroomInfo_paragraph'>Added by user</p> : <p className='BathroomInfo_paragraph'>Preloaded Bathroom</p> }
+
+                        <button onClick={this.commentButtonClicked}>
+                            Rate/ Add Comments
+                    </button>
+                    <div className='RateComment'>
+                        {this.showCommentForm()}
+                        {this.state.popUp ? <PopUp toggle={this.togglePop} bathroomId={this.props.match.params} /> : null}
+                    </div>
                 </div>
-                <button onClick={this.commentButtonClicked}>
-                        Rate/ Add Comments
-                </button>
-                <div className='RateComment'>
-                    {this.showCommentForm()}
-                    {this.state.popUp ? <PopUp toggle={this.togglePop} bathroomId={this.props.match.params} /> : null}
+                <div className='BathroomPage_item'>
+                    <div className='BathroomComments'>
+                        <h3>Comments:</h3>
+                        {this.bathroomComments()}
+                    </div>
+
                 </div>
-                    {this.showDeleteBathroom()}
             </div>
         </div>
         )
     }
-}
+ }
 
-//export default BathroomInfo;
+ //export default BathroomInfo;

@@ -1,8 +1,31 @@
-.BathroomInfoPage_main{
-    margin: 0 30px;
+.BathroomInfo_info{
+    margin: 0 30px 20px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.BathroomInfoPage_main{
+  display:flex;
+  flex-direction: column;
+}
+
+.title{
+  text-align: center;
+}
+
+.BathroomInfo_paragraph{
+  text-align: center;
+}
+
+.bathroom_name{
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #ffe9aa;
+  text-shadow: 2px 2px .2px #909090;
+}
+.description{
+  font-size: 20px;
 }
 
 
@@ -58,7 +81,7 @@
 
   
   @media all and (min-width: 800px){ /*fullscreen design*/
-    .BathroomInfoPage_main{
+    .BathroomInfo_info{
         flex-direction: row;
     }
      .BathroomComments {

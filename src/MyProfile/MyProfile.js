@@ -11,7 +11,7 @@ import UserService from '../services/user-service';
 class MyProfile extends Component {
     state={
         error: null,
-        user: this.props.user,
+        user: [],
         favorites: [],
         deleteWarning: false,
     }
@@ -22,9 +22,18 @@ class MyProfile extends Component {
     }
 
 
-    // componentDidMount() {
-    //     UserService.getUserInfo()
-    // }
+    componentDidMount() {
+        UserService.getUserInfo()
+        .then(responseJson => {
+            this.setState({user: responseJson }) 
+         })
+
+    .catch(error => {
+        console.error(error)
+        this.setState({error})
+        })
+
+    }
 
     deleteWarning = (e) => {
         const current = this.state.deleteWarning;
