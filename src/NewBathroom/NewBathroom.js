@@ -7,6 +7,8 @@ import Hashids from 'hashids';
 import ReactStars from 'react-rating-stars-component';
 import BathroomsApiService from '../services/bathrooms-api-service'
 import './NewBathroom.css'
+import {withRouter} from 'react-router-dom'
+
 
 class NewBathroom extends Component {
     state = {
@@ -140,6 +142,7 @@ class NewBathroom extends Component {
 
         BathroomsApiService.postBathroom(newBathroom)
 
+       this.props.history.push('/map');
 
     }
 
@@ -199,4 +202,4 @@ class NewBathroom extends Component {
     }
 }
 
-export default NewBathroom;
+export default withRouter(NewBathroom);

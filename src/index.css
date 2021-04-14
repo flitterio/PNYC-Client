@@ -57,3 +57,18 @@ code {
   width: 60px;
   cursor: pointer;
 }
+
+.help{
+  position: absolute;
+  top: 6rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  z-index: 5;
+}
+
+.help img{
+  width: 60px;
+  cursor: pointer;
+ 
+}

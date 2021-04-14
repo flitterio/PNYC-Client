@@ -19,6 +19,7 @@ import {
 
 import '@reach/combobox/styles.css';
 import mapStyles from './mapStyles';
+import InfoPopUp from '../InfoPopup/InfoPopup';
 
 
 const libraries = ['places'];
@@ -46,6 +47,7 @@ export default function App(props) {
     const [newPrompt, setNewPrompt] = React.useState(null);
     const [tempLocation, setTempLocation] = React.useState({});
     const [currentLocation, setCurrentLocation] = React.useState(center);
+    const [popUp, setPopUp] = React.useState(true);
 
     
     React.useEffect (() => {
@@ -62,34 +64,11 @@ export default function App(props) {
     }, []);
 
 
-
     const onMapClick = React.useCallback((event) => {
-        //This eventually should only render the current location then give the user the option to make a bathroom or not, not add it directly to the markers state which will eventually be taken from the back end API anyway
-        // return (
-        // <Marker 
-        //     key={event.lat + event.lng} 
-        //     position={{lat: event.lat, lng: event.lng}}
-        //     icon={{
-        //         url:'./pile-of-poo_1f4a9.png',
-        //         scaledSize: new window.google.maps.Size(40, 40),
-        //         origin: new window.google.maps.Point(0,0),
-        //         anchor: new window.google.maps.Point(15, 15)
-        //     }}
-        //     onClick={() => {
-            
                 setTempLocation({
                     lat: event.latLng.lat(),
                     lng: event.latLng.lng() 
                 });
-        //     }}
-        // /> 
-        // )
-        // setMarkers(current => [...current, {
-        //     lat: event.latLng.lat(),
-        //     lng: event.latLng.lng(),
-        //     //time: new Date()
-        //     },
-        // ]);
     }, []);
 
     const mapRef = React.useRef();
@@ -102,19 +81,28 @@ export default function App(props) {
         mapRef.current.setZoom(18);
     }, []);
 
+    // const clickPopUp = React.useCallback(() => {
+    //     console.log('clickpopup clicked', popUp)
+    //     setPopUp(!popUp);
+    // }, []);
+
     if(loadError) return "Error loading maps";
     if(!isLoaded) return 'Loading Maps';
     return (
         <div>
             <Search panTo={panTo}/>
             <Locate panTo={panTo}/>
+            <Help setPopUp={setPopUp} popUp={popUp}/>
+            <div >
+            {popUp ? <InfoPopUp toggle={setPopUp(!popUp)} />: null}
+            </div>
+            {/* WHY DOES THIS NOT WORK HM */}
 
             <Link to='/' className='pnyc'>PNYC </Link>
             <GoogleMap 
                 mapContainerStyle={mapContainerStyle}
                 zoom={12}
                 center={currentLocation || center}
-                // Will that make it default to center if currentLocation is null??
                 options={options}
                 onClick={onMapClick}
                 onLoad={onMapLoad}
@@ -146,7 +134,6 @@ export default function App(props) {
                         }}
                     /> 
                 ))}
-{/* keep gettting error that templocation.lat does not exist at times. need to check on this with jake */}
                 <Marker 
                     key={tempLocation.lat + tempLocation.lng} 
                     position={{lat: tempLocation.lat, lng: tempLocation.lng}}
@@ -220,6 +207,18 @@ function Locate({panTo}) {
              () => null, options);
         }}>
             <img src='./current-location-trans1.png' alt ='find current location' />
+        </button>
+    )
+}
+
+function Help({setPopUp, popUp}) {
+    return (
+        <button className='help' 
+        // onClick={()=> {clickPopUp()}}
+        onClick={() => setPopUp(!popUp)}
+        //why is this broken 
+        >
+            <img src='./info.png' alt ='extra help' />
         </button>
     )
 }

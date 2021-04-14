@@ -27,7 +27,7 @@ onRegistrationSuccess = () => {
     
         this.setState({ error: null })
         AuthApiService.postUser({
-            username: username.value,
+            username: username.value.toLowerCase(),
             password: password.value,
             fname: fname.value,
             lname: lname.value,

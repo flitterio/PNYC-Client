@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import { Link} from 'react-router-dom';
-// import config from '../config';
+import config from '../config';
 import { FontAwesomeIcon } from 'react-fontawesome'
 import CommentForm from '../CommentForm/CommentForm'
 import BathroomsApiService from '../services/bathrooms-api-service';
@@ -8,12 +8,13 @@ import TokenService from '../services/token-service';
 import PopUp from '../PopUp/PopUp';
 import ReactStars from 'react-rating-stars-component';
 import './BathroomInfo.css';
-//import {findBathroom} from '../bathrooms-helpers'
+
 
 export default class BathroomInfo extends Component {
     state = {
         error: null,
         bathroom: {},
+        user: this.props.user,
         comments: [],
         commentForm: false,
         popUp: false,
@@ -147,6 +148,38 @@ export default class BathroomInfo extends Component {
     )}
     }
 
+    deleteBathroom = () => {
+        const {bathroom_id} = this.props.match.params
+        fetch(`${config.API_ENDPOINT}/bathrooms/${bathroom_id}`, {
+            method: 'DELETE',
+            headers: {
+              'content-type': 'application/json',
+              'Authorization': `Bearer ${TokenService.getAuthToken()}`
+            },
+          })
+          .then( res => {
+            if(!res.ok) 
+              return res.json().then(e =>  Promise.reject(e))
+                return res
+          })
+          .then(() => {
+            window.location.href='/map'
+            })
+          .catch(error => {
+            console.error({error})
+          })
+    }
+
+    showDeleteBathroom = () => {
+        console.log('bathroom', this.state.bathroom)
+        if(this.state.bathroom.user_id === this.state.user.id){
+            return(
+                <button onClick={this.deleteBathroom}>
+                    Delete Bathroom
+                </button>
+            )
+        }
+    }
 
     render(){ 
         console.log('bathroom', this.state.bathroom)
@@ -191,6 +224,7 @@ export default class BathroomInfo extends Component {
                     {this.showCommentForm()}
                     {this.state.popUp ? <PopUp toggle={this.togglePop} bathroomId={this.props.match.params} /> : null}
                 </div>
+                    {this.showDeleteBathroom()}
             </div>
         </div>
         )

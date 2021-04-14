@@ -25,6 +25,7 @@ class SignIn extends Component {
     }
 
     handleSigninSuccess = () => {
+        this.props.handleUserLoggedIn()
         const { location, history } = this.props
         const destination = (location.state || {})
         .from || '/map'
@@ -55,7 +56,7 @@ class SignIn extends Component {
            const { username, password } = ev.target
         
            AuthApiService.postSignin({
-             username: username.value,
+             username: username.value.toLowerCase(),
              password: password.value,
            })
              .then(res => {

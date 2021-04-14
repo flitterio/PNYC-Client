@@ -18,7 +18,6 @@ import TokenService from './token-service';
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       )
-  
   },
 
     getBathrooms() {
@@ -37,8 +36,8 @@ import TokenService from './token-service';
       })
     },
 
-      getBathroom(bathroomId) {
-        return fetch(`${config.API_ENDPOINT}/bathrooms/${bathroomId}`, {
+      getBathroom(bathroom_id) {
+        return fetch(`${config.API_ENDPOINT}/bathrooms/${bathroom_id}`, {
               method: 'GET',
               headers: {
                   'content-type': 'application/json',

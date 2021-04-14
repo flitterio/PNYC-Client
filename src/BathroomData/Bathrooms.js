@@ -1,4 +1,4 @@
-export const bathroomList = 
+const bathroomList = 
 [
     {
         "name": "Arcilla Playground",
