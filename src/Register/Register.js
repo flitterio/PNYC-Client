@@ -3,7 +3,7 @@ import {Input, Button} from '../Utils/Utils';
 import AuthApiService from '../services/auth-api-service';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-//import './Register.css';
+import './Register.css';
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 

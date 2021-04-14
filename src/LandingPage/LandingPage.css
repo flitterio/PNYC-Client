@@ -14,7 +14,10 @@
 }
 
 @media all and (min-width: 800px){ /*fullscreen design*/
-.landing{
-    font-size: 20px;
-}
+    .landing{
+        font-size: 20px;
+        margin: 15px 250px;
+    }
+
+
 }
