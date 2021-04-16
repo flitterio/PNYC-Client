@@ -163,10 +163,19 @@ export default function App(props) {
                             }}
                     >
                         <div>
-                            <Link to={`/${selected.id}`}>
+                            <Link to={`/${selected.id}`} className='selected'>
                                 <h2>{selected.br_name}</h2>
                             </Link>
-                            <Link to={`/${selected.id}`}>
+                                <button onClick={(e) => {
+                            e.preventDefault() 
+                            window.location.href = `https://www.google.com/maps/dir/?api=1&destination=${selected.lat},${selected.lng}`}
+                            }
+                            className='directions'
+                        >
+                            Directions
+                        </button>
+                        <br /><br />
+                            <Link to={`/${selected.id}`} className='selected'>
                                 More Info
                             </Link>
 

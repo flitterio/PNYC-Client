@@ -5,6 +5,22 @@
     font-size: 10px;
 }
 
+.selected{
+    text-decoration: none;
+    color:black;
+}
+.selected:hover{
+    color: #909090;
+}
+
+.selected:active{
+    color: #ffe9aa;
+}
+
+.selected:visited{
+    color: #909090;
+}
+
 @media all and (min-width: 800px){ /*fullscreen design*/
     .search{
         width:auto;
