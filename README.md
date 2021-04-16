@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# PNYC
+Where to Go When you've Got to Go!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Link to live app: https://pnyc-client-flitterio.vercel.app/
 
-## Available Scripts
+Link to API Repo: https://github.com/flitterio/PNYC-Server
 
-In the project directory, you can run:
+## What Is This???
+Have you ever found yourself in the middle of New York City, surrounded by buildings, but with no idea where you can use the bathroom? You're not alone. PNYC is the only app around that specializes in finding you the nearest and nicest place in New York City. You can even rate your experience, and add hidden gems on to the map as you find them (like the Chipotle on the coner that will take pity on your unfortunate bladder attack)
 
-### `npm start`
+### Screenshots
+Landing Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Landing Page](/Screenshots/landing.PNG)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Register For Your Account
 
-### `npm test`
+![Register](/Screenshots/register.PNG)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Login
 
-### `npm run build`
+![Login](/Screenshots/login.PNG)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Map Page (Blue Dot is your Location)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Map Page](/Screenshots/map.PNG)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Click on Bathrooms to See What They Are
 
-### `npm run eject`
+![Selected Bathroom](/Screenshots/map_selected.PNG) ![Previously Viewed Bathroom](/Screenshots/map_visited.PNG)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Search for Different Places, Click on Map Places to Get Basic Info From Google Maps
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Search Bar](/Screenshots/autocomplete.PNG) ![Search Result](/Screenshots/search_find.PNG)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Place Info](/Screenshots/place_info.PNG)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Add Bathrooms You Find 
+![Temporary Bathroom](/Screenshots/add_bathroom.PNG)
 
-## Learn More
+Use the Side Bar Menu to Navigate, Press the Info Button On the Map for Help!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Menu](/Screenshots/menu.PNG) ![Info Popup](/Screenshots/info_popup.PNG)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Check out or Delete your Profile
 
-### Code Splitting
+![Profile](/Screenshots/user_profile.PNG) ![Delete User](/Screenshots/delete_user.PNG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Code Used
 
-### Analyzing the Bundle Size
+Front End: React, CSS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Back End: Node JS
 
-### Making a Progressive Web App
+APIS Accessed: Google Maps Javascript API, Google Geocoding API, Google Places API, and Google Service Usage API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Preloaded Bathroom Data From: https://data.cityofnewyork.us/Recreation/bathrooms/h87e-shkn/data
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Stay Tuned for Future Updates and Additions of Features!!
