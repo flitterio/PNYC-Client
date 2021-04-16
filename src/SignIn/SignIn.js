@@ -121,11 +121,11 @@ class SignIn extends Component {
             </div>
             </form>
         <div className="redirect"> 
-            <h3>not a member yet?&nbsp; 
+            <h3>Not a member yet?&nbsp; 
                 <Link to='/register'>
                      Click Here
                 </Link>
-                &nbsp;to register! 
+                &nbsp;to Register! 
             </h3>
         </div>
  </div>
