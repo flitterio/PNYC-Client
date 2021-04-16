@@ -11,40 +11,40 @@ Have you ever found yourself in the middle of New York City, surrounded by build
 ### Screenshots
 Landing Page
 
-![Landing Page](/Screenshots/landing.PNG)
+<img src="/Screenshots/landing.PNG" alt="Landing Page" width="350"/>
 
 Register For Your Account
 
-![Register](/Screenshots/register.PNG)
+<img src="/Screenshots/register.PNG" alt="Register" width="350"/>
 
 Login
 
-![Login](/Screenshots/login.PNG)
+<img src="/Screenshots/login.PNG" alt="Login" width="350"/>
 
 Map Page (Blue Dot is your Location)
 
-![Map Page](/Screenshots/map.PNG)
+<img src="/Screenshots/map.PNG" alt="Map Page" width="350"/>
 
 Click on Bathrooms to See What They Are
 
-![Selected Bathroom](/Screenshots/map_selected.PNG) ![Previously Viewed Bathroom](/Screenshots/map_visited.PNG)
+<img src="/Screenshots/map_selected.PNG" alt="Selected Bathroom" width="350"/> <img src="/Screenshots/map_visited.PNG" alt="Previously Viewed Bathroom" width="350"/>
 
 Search for Different Places, Click on Map Places to Get Basic Info From Google Maps
 
-![Search Bar](/Screenshots/autocomplete.PNG) ![Search Result](/Screenshots/search_find.PNG)
+<img src="/Screenshots/autocomplete.PNG" alt="Search Bar" width="300"/> <img src="/Screenshots/search_find.PNG" alt="Search Result" width="300"/> <img src="/Screenshots/place_info.PNG" alt="Place Info" width="300"/>
 
-![Place Info](/Screenshots/place_info.PNG)
 
 Add Bathrooms You Find 
-![Temporary Bathroom](/Screenshots/add_bathroom.PNG)
+
+<img src="/Screenshots/add_bathroom.PNG" alt="Add Bathroom" width="350"/><img src="/Screenshots/add_bathroom_form.PNG" alt="Add Bathroom Form" width="350"/>
 
 Use the Side Bar Menu to Navigate, Press the Info Button On the Map for Help!
 
-![Menu](/Screenshots/menu.PNG) ![Info Popup](/Screenshots/info_popup.PNG)
+<img src="/Screenshots/menu.PNG" alt="Menu" width="350"/> <img src="/Screenshots/info_popup.PNG" alt="Info Popup" width="350"/>
 
 Check out or Delete your Profile
 
-![Profile](/Screenshots/user_profile.PNG) ![Delete User](/Screenshots/delete_user.PNG)
+<img src="/Screenshots/user_profile.PNG" alt="Profile" width="350"/> <img src="/Screenshots/delete_user.PNG" alt="Delete User" width="350"/>
 
 ## Code Used
 
