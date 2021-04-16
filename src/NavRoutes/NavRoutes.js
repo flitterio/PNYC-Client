@@ -40,8 +40,8 @@ function NavRoutes() {
 
               <li className="nav-text">
               <Link
-                to='/sign-in' className="nav-text">
-                Sign in 
+                to='/sign-in'>
+                Login 
               </Link> 
             </li>
           </>
@@ -60,7 +60,7 @@ function NavRoutes() {
                 <ul className='nav-menu-items' onClick={showSidebar}>
                     <li className='navbar-toggle'>
                         <Link to='#' className='menu-bars'>
-                            <AiIcons.AiOutlineClose />
+                            <AiIcons.AiOutlineClose className='x' />
                         </Link>
                     </li>
                     {TokenService.hasAuthToken()
