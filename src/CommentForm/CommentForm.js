@@ -16,14 +16,12 @@ export default class  extends Component {
     }
     const {bathroom_id} = this.props
     const bathroomId = bathroom_id.bathroom_id
-    console.log('bathroom id', bathroomId)
     const { text } = ev.target
     BathroomsApiService.postComment(bathroomId, text.value)
       //.then(this.props.handleAddComment(newComment))
 
       .then((newComment) => {
         this.props.handleAddComment(newComment)
-        console.log('added comment', newComment)
         text.value = ''
       })
       .catch(error => {

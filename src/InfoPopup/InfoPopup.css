@@ -17,16 +17,18 @@
     background-color: rgba(0,0,0,0.25);
   }  */
   
-  .Infomodal_content {
+  .info_modal_content {
     background-color: white;
+    font-size: 30px;
+    text-align: center;
     position: absolute;
-    z-index: 15;
+    z-index: 10;
     top: 20%;
     left: 30%;
     width: 40%;
     padding: 20px;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid #a93f55;
   } 
   
   .close {
@@ -35,6 +37,6 @@
   }
   
   .close:hover {
-    color: red;
+    color:#a93f55;
     cursor: pointer;
   } 

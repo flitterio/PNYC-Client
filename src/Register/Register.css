@@ -53,6 +53,9 @@
       font-size: 16px;
   }
 
+  .register, .signIn{
+    margin: 0 250px;
+  }
 
 
   @media screen and (max-width: 1100px) { /*smaller screens */
@@ -73,5 +76,8 @@
     }
     .submit{
         text-align: center;
+    }
+    .register, .signIn{
+      margin: 0 20px;
     }
   }

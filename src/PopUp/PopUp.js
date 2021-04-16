@@ -5,7 +5,6 @@ import './PopUp.css';
 export default class PopUp extends Component {
   handleClick = () => {
    this.props.toggle();
-   console.log('bathroomid', this.props.bathroomId)
   };
 render() {
   return (

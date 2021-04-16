@@ -1,3 +1,52 @@
 #my-profile{
     margin-left: 20px;
 }
+
+#delete{
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #a36773;
+    color: #201f1f;
+    border: solid #909090;
+    outline: none; 
+    margin: 0 10px;
+}
+
+#delete:hover{
+    background-color: #a93f55;
+}
+
+#clear{
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #E4DBC2;
+    border: solid #909090;
+    outline: none; 
+    margin: 0 10px;
+}
+
+#clear:hover{
+    background-color: #ffe9aa;
+}
+
+.username{
+    font-size: 35px;
+}
+
+.your_profile{
+    font-size: 30px;
+}
+
+.name_label{
+    font-size: 25px;
+}
+
+.user_name{
+    font-size: 23px;
+}
+
+@media all and (min-width: 800px){ /*fullscreen design*/
+    #my-profile{
+        margin-left: 250px;
+    }
+  }

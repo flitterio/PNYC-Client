@@ -25,16 +25,15 @@ class SignIn extends Component {
     }
 
     handleSigninSuccess = () => {
-        this.props.handleUserLoggedIn()
+        //this.props.handleUserLoggedIn()
         const { location, history } = this.props
-        const destination = (location.state || {})
-        .from || '/map'
-        history.push(destination)
-        // const {bathroom_id = 'map'} = location.state.redirectUrl
+        // const destination = (location.state || {})
+        // .from || '/map'
+        // history.push(destination)
+        const {bathroom_id = 'map'} = location.state.redirectUrl
         // console.log('redirectUrl', bathroom_id)
         // console.log('props', this.props)
-        // history.push(`/${bathroom_id}`)
-        // window.location.reload()
+        history.push(`/${bathroom_id}`)
       }
 
     handleSubmitBasicAuth = ev => {
@@ -122,11 +121,11 @@ class SignIn extends Component {
             </div>
             </form>
         <div className="redirect"> 
-            <h3>not a member yet?&nbsp; 
+            <h3>Not a member yet?&nbsp; 
                 <Link to='/register'>
                      Click Here
                 </Link>
-                &nbsp;to register! 
+                &nbsp;to Register! 
             </h3>
         </div>
  </div>

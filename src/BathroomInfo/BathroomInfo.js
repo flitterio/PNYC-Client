@@ -24,7 +24,6 @@ import './BathroomInfo.css'
          }
      }
      componentDidMount(){
-         console.log('has auth token', TokenService.hasAuthToken())
         const {bathroom_id} = this.props.match.params
         BathroomsApiService.getBathroom(bathroom_id)
         .then(bathroomInfo => {
@@ -38,8 +37,6 @@ import './BathroomInfo.css'
         })
         BathroomsApiService.getBathroomComments(bathroom_id)
         .then(newComments => {
-            console.log('newComments', newComments)
-            console.log('this', this)
             this.setState(
                {comments:  newComments} 
             )
@@ -52,7 +49,6 @@ import './BathroomInfo.css'
 
     //organize comments
     bathroomComments = () => {
-        console.log('comments', this.state.comments)
         if(this.state.comments.length > 0){
             return (
             <ul className='BathroomPage__comment-list'>
@@ -102,7 +98,6 @@ import './BathroomInfo.css'
         e.preventDefault();
         const {bathroom_id} = this.props.match.params
         const { rating } = this.state
-        console.log('bathroom_id', bathroom_id, 'rating', rating)
         BathroomsApiService.postRates(bathroom_id, rating)
 
 
@@ -146,7 +141,6 @@ import './BathroomInfo.css'
 
   
     render(){ 
-        console.log('bathroom', this.state.bathroom)
         const { bathroom} = this.state
     return(
         <div className='BathroomInfoPage_main'>

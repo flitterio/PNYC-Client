@@ -10,10 +10,10 @@ export default class User extends React.Component {
         const{id, fname, lname, username, favorites} = this.props
         return(
             <div className='User'>
-                <h1>Hello, {username}!</h1>
-                <h2>Your Profile</h2>
-                <h3>Name:</h3>
-                    <p>{fname} {lname}</p>
+                <h1 className='username'>Hello, {username}!</h1>
+                <h2 className='your_profile'> Your Profile</h2>
+                <h3 className='name_lable'>Name:</h3>
+                    <p className='user_name'>{fname} {lname}</p>
                 {/* <ul>
                     {favorites.map(favorite => {
                         <li id={favorite.id}>

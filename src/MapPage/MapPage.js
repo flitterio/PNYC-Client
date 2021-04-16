@@ -42,16 +42,15 @@ export default function App(props) {
         googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY,
        libraries
     });
-    const [markers, setMarkers] = React.useState(props.bathrooms);
+    const [markers, setMarkers] = React.useState(center);
     const [selected, setSelected] = React.useState(null);
     const [newPrompt, setNewPrompt] = React.useState(null);
     const [tempLocation, setTempLocation] = React.useState({});
     const [currentLocation, setCurrentLocation] = React.useState(center);
-    const [popUp, setPopUp] = React.useState(true);
+    const [popUp, setPopUp] = React.useState(false);
 
     
     React.useEffect (() => {
-        console.log('checking props', props.bathrooms)
             navigator.geolocation.getCurrentPosition((position) => {
                 setCurrentLocation(
                     {  
@@ -63,7 +62,19 @@ export default function App(props) {
              () => null, options);
     }, []);
 
+    React.useEffect (() => {
+           setMarkers(props.bathrooms)
+    }, []);
 
+    const renderPopUp = () => {
+        if(popUp){
+            return(
+                <div >
+                    <InfoPopUp toggle={() => {setPopUp(!popUp)}} />
+                </div>
+            )
+        }
+    }
     const onMapClick = React.useCallback((event) => {
                 setTempLocation({
                     lat: event.latLng.lat(),
@@ -81,10 +92,6 @@ export default function App(props) {
         mapRef.current.setZoom(18);
     }, []);
 
-    // const clickPopUp = React.useCallback(() => {
-    //     console.log('clickpopup clicked', popUp)
-    //     setPopUp(!popUp);
-    // }, []);
 
     if(loadError) return "Error loading maps";
     if(!isLoaded) return 'Loading Maps';
@@ -93,10 +100,7 @@ export default function App(props) {
             <Search panTo={panTo}/>
             <Locate panTo={panTo}/>
             <Help setPopUp={setPopUp} popUp={popUp}/>
-            <div >
-            {popUp ? <InfoPopUp toggle={setPopUp(!popUp)} />: null}
-            </div>
-            {/* WHY DOES THIS NOT WORK HM */}
+            {renderPopUp()}
 
             <Link to='/' className='pnyc'>PNYC </Link>
             <GoogleMap 
@@ -134,20 +138,22 @@ export default function App(props) {
                         }}
                     /> 
                 ))}
-                <Marker 
-                    key={tempLocation.lat + tempLocation.lng} 
-                    position={{lat: tempLocation.lat, lng: tempLocation.lng}}
-                    icon={{
-                        url:'./pile-of-poo_1f4a9.png',
-                        scaledSize: new window.google.maps.Size(40, 40),
-                        origin: new window.google.maps.Point(0,0),
-                        anchor: new window.google.maps.Point(15, 15)
-                    }}
-                    onClick={() => {
-                        setNewPrompt(tempLocation);
-                        
-                    }}
-                /> 
+                {tempLocation ? 
+                    (<Marker 
+                        key={tempLocation.lat + tempLocation.lng} 
+                        position={{lat: tempLocation.lat, lng: tempLocation.lng}}
+                        icon={{
+                            url:'./pile-of-poo_1f4a9.png',
+                            scaledSize: new window.google.maps.Size(40, 40),
+                            origin: new window.google.maps.Point(0,0),
+                            anchor: new window.google.maps.Point(15, 15)
+                        }}
+                        onClick={() => {
+                            setNewPrompt(tempLocation);
+                            
+                        }}
+                    /> ) : null
+                }
                 {selected ? (
                     //this Info Window Will be for markers that already exist.
                     <InfoWindow 

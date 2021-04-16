@@ -39,14 +39,12 @@ class NewBathroom extends Component {
         const id = hashids.encode(input) 
         const numbers = hashids.decode(id)
 
-        console.log('id', id)
-
         return id;
       }
     
     handleTagChange = (event) => {
         let tempTags = event.map(e => e.value)
-        console.log('tags selected', tempTags)
+        // console.log('tags selected', tempTags)
 
         if (tempTags.includes("ishandicap")) {
             this.setState({
@@ -107,7 +105,6 @@ class NewBathroom extends Component {
                 hasbaby_table: false
             })
         }
-        console.log('state', this.state)
     }
 
     ratingChanged = (newRating) => {
@@ -119,8 +116,6 @@ class NewBathroom extends Component {
     createNewBathroom = (event) => {
         event.preventDefault();
         const{bathroom, description } = event.target
-
-        console.log(this.state)
         const hexId = this.toHex(parseInt(this.state.lat * 100000))
         
        let newBathroom = {
@@ -142,13 +137,13 @@ class NewBathroom extends Component {
 
         BathroomsApiService.postBathroom(newBathroom)
 
+        //console.log('his.props.history', this.props.history)
        this.props.history.push('/map');
 
     }
 
     createNewBathroom
     render(){
-        console.log(this.props.tempNewBathroom)
         return(
             <div className='NewBathroom'>
                 <header>

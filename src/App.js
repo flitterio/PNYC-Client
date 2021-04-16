@@ -44,7 +44,6 @@ class App extends Component {
         this.setState(
             {bathrooms: bathrooms}
         )
-        console.log('bathrooms', bathrooms)
     })
     .catch(error => {
         console.error(error)
@@ -146,7 +145,6 @@ class App extends Component {
     )
   }
   render(){
-    console.log('this.state.bathrooms', this.state.bathrooms)
     return (
       <div className='App'>
         <header className='App_header'>
