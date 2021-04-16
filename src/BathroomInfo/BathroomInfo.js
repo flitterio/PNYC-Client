@@ -56,11 +56,6 @@ import './BathroomInfo.css'
                     <li 
                         key={comment.id} className='BathroomPage__comment'>
                         <p className='BathroomPage__comment-text'>
-                            {/* <FontAwesomeIcon
-                                size='lg'
-                                icon='quote-left'
-                                className='BathroomPage__comment-icon blue'
-                            /> */}
                             {comment.text}
                         </p>
                         <p className='BathroomPage__comment-user'>
@@ -130,6 +125,7 @@ import './BathroomInfo.css'
                 Rate
             </button>
         </form>
+        <br />
         <CommentForm 
             comments={this.state.comments} 
             bathroom_id={this.props.match.params}
@@ -180,6 +176,7 @@ import './BathroomInfo.css'
                         <button onClick={this.commentButtonClicked}>
                             Rate/ Add Comments
                     </button>
+                    <br /><br />
                     <div className='RateComment'>
                         {this.showCommentForm()}
                         {this.state.popUp ? <PopUp toggle={this.togglePop} bathroomId={this.props.match.params} /> : null}

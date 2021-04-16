@@ -1,5 +1,5 @@
 .BathroomInfo_info{
-    margin: 0% 25% 15% 25%;
+    margin: 0% 15% 15% 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,9 +82,11 @@
   
   @media all and (min-width: 800px){ /*fullscreen design*/
     .BathroomInfo_info{
-        flex-direction: row;
+      margin: 0% 25% 15% 25%;
+      flex-direction: row;
     }
      .BathroomComments {
       margin: 0 10px;
   }
+
   }
