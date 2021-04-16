@@ -12,9 +12,33 @@ label{
     margin-top: 0 !important;
 }
 
+.NewBathroom {
+    margin: 0 30px;
+   
+}
+.new_bathroom{
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #E4DBC2;
+    border: solid #909090;
+    outline: none;
+    width: 50% !important; 
+}
+
+.new_bathroom:hover{
+    background-color: #ffe9aa;
+}
+
+#description{
+    height: 5rem;
+}
 
 @media all and (min-width: 800px){ /*Full screen changes */
   .newBathroom_form{
-      margin: 0 200px 0 50px;
+      margin: 0 300px;
   }
+  .new_bathroom{
+      width: 23% !important;
+  }
+ 
 }

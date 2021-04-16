@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-// import { Link} from 'react-router-dom';
-// import config from '../config';
-import { FontAwesomeIcon } from 'react-fontawesome'
 import CommentForm from '../CommentForm/CommentForm'
 import BathroomsApiService from '../services/bathrooms-api-service';
 import TokenService from '../services/token-service';
 import PopUp from '../PopUp/PopUp';
 import ReactStars from 'react-rating-stars-component';
 import './BathroomInfo.css'
+
 
  export default class BathroomInfo extends Component {
      state = {
@@ -34,6 +32,8 @@ import './BathroomInfo.css'
         .catch(error => {
             console.error(error)
             this.setState({error})
+            this.props.history.push('./not-found');
+            
         })
         BathroomsApiService.getBathroomComments(bathroom_id)
         .then(newComments => {

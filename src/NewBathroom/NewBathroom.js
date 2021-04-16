@@ -164,7 +164,8 @@ class NewBathroom extends Component {
 
                         <br /><br />
                             <section className="description">
-                                <label htmlFor="description">
+                                <label htmlFor="description"
+                                >
                                     Description
                                 </label>
                                 <br/>
@@ -187,7 +188,7 @@ class NewBathroom extends Component {
                         isClearable/>
                     <br />
 
-                            <input type="submit" value="Add Item" className="submit" />
+                            <input type="submit" value="Add Bathroom" className="new_bathroom" />
                             <br /><br />
                     </form>
                 </section>

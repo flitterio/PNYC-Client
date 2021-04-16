@@ -12,6 +12,7 @@ import PublicOnlyRoute from './Utils/PublicOnlyRoute';
 import config from './config';
 import MyProfile from './MyProfile/MyProfile'
 import './App.css';
+import NotFoundPage from './NotFoundPage/NotFoundPage';
 
 class App extends Component {
   state= {
@@ -101,6 +102,10 @@ class App extends Component {
           <PrivateRoute
               path="/my-profile" 
               component={MyProfile}
+          />
+          <Route
+            path='/not-found'
+            component={NotFoundPage}
           />
           <Route
             path='/:bathroom_id'
