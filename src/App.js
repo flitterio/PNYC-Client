@@ -11,8 +11,6 @@ import PrivateRoute from './Utils/PrivateRoute';
 import PublicOnlyRoute from './Utils/PublicOnlyRoute';
 import config from './config';
 import MyProfile from './MyProfile/MyProfile'
-import BathroomsApiService from './services/bathrooms-api-service';
-import FormatBathrooms from './BathroomData/FormatBathrooms';
 import './App.css';
 
 class App extends Component {
@@ -74,26 +72,6 @@ class App extends Component {
     })
   }
 
-  // RenderNavRoutes(){
-  //   return(
-  //     <>
-  //       <NavRoutes />
-
-  //         {/* <Switch>
-  //         <Route  
-  //           exact
-  //           path='/'
-  //           component={LandingPage}
-  //         />
-  //         <Route path='/map' component={MapPage} />
-  //         <Route path='/new-bathroom' component={NewBathroom} />
-  //         <Route path='/sign-in' component={SignIn} />
-  //         <Route path='/register' component={Register} />
-  //         </Switch> */}
-  //     </>
-  //   );
-  // }
-
   RenderMainRoutes() {
     return(
       <>
@@ -120,26 +98,14 @@ class App extends Component {
             path='/new-bathroom' 
             component={() => <NewBathroom tempLat={this.state.tempLat} tempLng={this.state.tempLng} handleAddBathroom={this.handleAddBathroom}/> } 
           />
-
           <PrivateRoute
               path="/my-profile" 
               component={MyProfile}
           />
-
-          {/* PUTTING THIS IN BATHROOM INFO COMPONENT */}
-          {/* <Route 
-            path='/:bathroom_id/new-comment'
-            component={() => <CommentForm bathrooms={this.state.bathrooms} comments={this.state.comments} handleAddComment={this.handleAddComment}/>}
-            /> */}
-             <Route
-            path='/format-bathroom'
-            component={FormatBathrooms}
-            />
           <Route
             path='/:bathroom_id'
             component={BathroomInfo}
             />
-         
       </Switch>
       </>
     )

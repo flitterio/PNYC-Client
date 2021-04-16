@@ -1,16 +1,26 @@
 {
   "short_name": "PNYC",
-  "name": "Where to go when you've got to go",
+  "name": "PNYC, Where to Go When You've Got to Go",
   "icons": [
     {
-      "src": "toilet.jpg",
-      "sizes": "image/jpg",
-      "type": "image"
+      "src": "toilet.JPG",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "toilet.JPG",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "toilet.JPG",
+      "type": "image/png",
+      "sizes": "512x512"
     }
-   
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
+

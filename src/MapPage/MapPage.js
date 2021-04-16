@@ -125,7 +125,7 @@ export default function App(props) {
             {/* This should map the pre-existing markers  */}
                     {markers.map((marker) => (
                     <Marker 
-                        key={marker.lat + marker.lng} 
+                        key={marker.lat + marker.lng + marker.br_name} 
                         position={{lat: marker.lat, lng: marker.lng}}
                         icon={{
                             url:'./pile-of-poo_1f4a9.png',
@@ -138,7 +138,7 @@ export default function App(props) {
                         }}
                     /> 
                 ))}
-                {tempLocation ? 
+                 {Object.keys(tempLocation).length !== 0 ? 
                     (<Marker 
                         key={tempLocation.lat + tempLocation.lng} 
                         position={{lat: tempLocation.lat, lng: tempLocation.lng}}
@@ -154,7 +154,7 @@ export default function App(props) {
                         }}
                     /> ) : null
                 }
-                {selected ? (
+               {selected ? (
                     //this Info Window Will be for markers that already exist.
                     <InfoWindow 
                         position={{lat: selected.lat, lng: selected.lng}} 

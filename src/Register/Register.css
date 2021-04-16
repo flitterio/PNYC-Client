@@ -1,6 +1,11 @@
 *{
     box-sizing: border-box;
 }
+.red{
+  font-size: 25px;
+  color: #a93f55;
+  font-weight: bold;
+}
 .Input {
     width: 100%;
     padding: 12px;
