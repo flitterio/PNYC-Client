@@ -21,37 +21,32 @@ class SignIn extends Component {
     state= {error: null,
     passwordShown: false }
     togglePasswordVisiblity = () =>{
-        this.setState({passwordShown: !this.state.passwordShown })
+        this.setState({passwordShown: !this.state.passwordShown });
     }
 
     handleSigninSuccess = () => {
         const { location, history } = this.props
         const destination = (location.state || {})
         .from || '/map'
-        history.push(destination)
-        // const {bathroom_id = 'map'} = location.state.redirectUrl
-        // console.log('redirectUrl', bathroom_id)
-        // console.log('props', this.props)
-        // history.push(`/${bathroom_id}`)
-        // window.location.reload()
+        history.push(destination);
       }
 
     handleSubmitBasicAuth = ev => {
-        ev.preventDefault()
+        ev.preventDefault();
         const {username, password } = ev.target
 
         TokenService.saveAuthToken(
             TokenService.makeBasicAuthToken(username.value, password.value)
-        )
+        );
 
         username.value = ''
         password.value =''
-        this.handleSigninSuccess()
+        this.handleSigninSuccess();
     }
 
     handleSubmitJwtAuth = ev => {
-           ev.preventDefault()
-           this.setState({ error: null })
+           ev.preventDefault();
+           this.setState({ error: null });
            const { username, password } = ev.target
         
            AuthApiService.postSignin({
@@ -74,61 +69,64 @@ class SignIn extends Component {
         return(
             <div className="signIn">
                 <h1> Login </h1>
-            <form id="login"
-               onSubmit={this.handleSubmitJwtAuth}>
+                <form id="login"
+                    onSubmit={this.handleSubmitJwtAuth}
+                >
                     <div role='alert'>
                         {error && <p className='red'>{error}</p>}
                     </div>
-                <br /><br />
-        <div className="container">
-            <div className='col-25'>
-                <label htmlFor="username">
-                    User name:
-                </label>
-            </div>
-            <div className="col-75">
-                <Input 
-                    id="username"  
-                    name="username" 
-                    type="text" placeholder="Username" required />
+
+                    <br /><br />
+
+                    <div className="container">
+                        <div className='col-25'>
+                            <label htmlFor="username">
+                                User name:
+                            </label>
+                        </div>
+                        <div className="col-75">
+                            <Input 
+                                id="username"  
+                                name="username" 
+                                type="text" placeholder="Username" required />
+                        </div>
+                
+                        <br /><br />
+                        <div className="pass">
+                            <div className="col-25">
+                                <label htmlFor="password">
+                                    Password:
+                                </label>
+                            </div>
+                            <div className="col-70">
+                                <Input 
+                                    id="password" 
+                                    name="password" 
+                                    type={this.state.passwordShown ? "text" : "password"} 
+                                    placeholder="Password" required />
+                            </div>
+                            <div>
+                                    <i onClick={this.togglePasswordVisiblity}>{eye}</i>{" "}
+                                <br /><br />
+                                <div className="submit">
+                                    <Button id="buttonstyle" className="submit" type="submit" >
+                                        Sign In 
+                                    </Button>
+                                <br /><br />
+                                </div>
+                            </div>
+                        </div>
                 </div>
-           
-            <br /><br />
-            <div className="pass">
-            <div className="col-25">
-                <label htmlFor="password">
-                    Password:
-                </label>
-            </div>
-            <div className="col-70">
-                <Input 
-                    id="password" 
-                    name="password" 
-                    type={this.state.passwordShown ? "text" : "password"} 
-                    placeholder="Password" required />
-            </div>
-            <div>
-                    <i onClick={this.togglePasswordVisiblity}>{eye}</i>{" "}
-                <br /><br />
-                <div className="submit">
-                <Button id="buttonstyle" className="submit" type="submit" >
-                    Sign In 
-                    </Button>
-                <br /><br />
-                </div>
+                    </form>
+                <div className="redirect"> 
+                    <h3>Not a member yet?&nbsp; 
+                        <Link to='/register'>
+                            Click Here
+                        </Link>
+                        &nbsp;to Register! 
+                    </h3>
                 </div>
             </div>
-            </div>
-            </form>
-        <div className="redirect"> 
-            <h3>Not a member yet?&nbsp; 
-                <Link to='/register'>
-                     Click Here
-                </Link>
-                &nbsp;to Register! 
-            </h3>
-        </div>
- </div>
         )
     }
 }

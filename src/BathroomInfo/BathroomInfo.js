@@ -97,15 +97,15 @@ import './BathroomInfo.css'
 
 
         .catch(error => {
-            console.error(error)
-            this.setState({error})
+            console.error(error);
+            this.setState({error});
         })
-        window.location.reload()
+        window.location.reload();
     }
     handleAddComment = (newComment) => {
         this.setState({
             comments: [...this.state.comments, newComment]
-        })
+        });
     }
     showCommentForm = () => {
     if(this.state.commentForm === true){
@@ -137,7 +137,7 @@ import './BathroomInfo.css'
 
   
     render(){ 
-        const { bathroom} = this.state
+        const { bathroom } = this.state
     return(
         <div className='BathroomInfoPage_main'>
             <div className='title'>
@@ -159,13 +159,6 @@ import './BathroomInfo.css'
                     <h3 className='description'> Description: </h3>
                         <p className='BathroomInfo_paragraph'>{bathroom.description}</p>
                     <h3 className='description'> Rating: </h3>
-                        {/* <ReactStars 
-                            count={bathroom.rate}
-                            size={35}
-                            color="#ffd700"
-                            edit={false}
-                            half={true}
-                        /> */}
                             <p className='BathroomInfo_paragraph'>{bathroom.rate}</p>
                     
                     <h3 className='description'>

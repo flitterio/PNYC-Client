@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch, Link, Router, BrowserRouter} from 'react-router-dom';
+import {Route, Switch, BrowserRouter} from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage';
 import MapPage from './MapPage/MapPage';
 import NewBathroom from './NewBathroom/NewBathroom';
@@ -57,26 +57,24 @@ class App extends Component {
     this.setState({
       tempLat: newLat,
       tempLng: newLng,
-    })
+    });
   }
  
   handleAddBathroom = (newBathroom) => {
     this.setState({
       bathrooms: [...this.state.bathrooms, newBathroom]
-    })
+    });
   }
 
   handleAddComment = (newComment) => {
     this.setState({
       ...this.state.comments,
       newComment
-    })
+    });
   }
 
   RenderMainRoutes() {
     return(
-      <BrowserRouter>
-        <NavRoutes />
         <Switch>
             <Route  
               exact
@@ -112,17 +110,16 @@ class App extends Component {
               component={BathroomInfo}
               />
         </Switch>
-      </BrowserRouter>
     )
   }
   render(){
     return (
       <div className='App'>
-        <header className='App_header'>
-          {/* {this.RenderNavRoutes()} */}
-          {/* <Link to='/'> P NYC </Link> */}
+        <header 
+            className='App_header'>
         </header>
         <main className='App_main'>
+          <NavRoutes />
           {this.RenderMainRoutes()}
         </main>
       </div>

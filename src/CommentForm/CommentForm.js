@@ -10,7 +10,7 @@ export default class  extends Component {
   }
 
   handleSubmit = ev => {
-    ev.preventDefault()
+    ev.preventDefault();
     const newComment = {
       text: this.state.text
     }
@@ -18,7 +18,6 @@ export default class  extends Component {
     const bathroomId = bathroom_id.bathroom_id
     const { text } = ev.target
     BathroomsApiService.postComment(bathroomId, text.value)
-      //.then(this.props.handleAddComment(newComment))
 
       .then((newComment) => {
         this.props.handleAddComment(newComment)
@@ -28,8 +27,6 @@ export default class  extends Component {
         console.error(error)
         this.setState({error})
     })
-      //unsure what to do for this error
-     // .catch(this.context.setError)
   }
 
   render() {

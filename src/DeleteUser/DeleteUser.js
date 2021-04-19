@@ -12,7 +12,7 @@ class DeleteUser extends Component {
     }
 
     handleDeleteUser = e => {
-        e.preventDefault()
+        e.preventDefault();
         const {userId} = this.props.user.id 
        
      fetch(`${config.API_ENDPOINT}/users/${userId}`, {
@@ -28,18 +28,18 @@ class DeleteUser extends Component {
                 return res
           })
           .then(() => {
-            this.props.onDeleteUser(userId)
-            TokenService.clearAuthToken()
-            window.location.href='/'
+            this.props.onDeleteUser(userId);
+            TokenService.clearAuthToken();
+            window.location.href='/';
             })
           .catch(error => {
             console.error({error})
-          })
+          });
           }
 
 
     cancelDelete = (e) => {
-       this.props.deleteWarning(e)
+       this.props.deleteWarning(e);
     }
 
     render(){

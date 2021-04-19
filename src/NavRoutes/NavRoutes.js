@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import {BrowserRouter, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './NavRoutes.css';
 import {IconContext} from 'react-icons';
@@ -13,8 +13,7 @@ function NavRoutes() {
     const showSidebar = () => setSidebar(!sidebar);
     
     const handleLogoutClick = () => {
-      TokenService.clearAuthToken() 
-     // this.props.clearItemsArray()
+      TokenService.clearAuthToken();
   }
   const renderLogoutLink = () => {
         return (
@@ -48,7 +47,6 @@ function NavRoutes() {
         )
       }
     return (
-        <BrowserRouter>
           <IconContext.Provider value={{color: '#fff'}}>
             <Link to='/map' className="pnyc"> PNYC </Link>
               <div className='navbar'>
@@ -79,7 +77,6 @@ function NavRoutes() {
                   </ul>
               </nav>
               </IconContext.Provider>
-        </BrowserRouter>
     )
 }
 

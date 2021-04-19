@@ -38,7 +38,6 @@ class NewBathroom extends Component {
     
     handleTagChange = (event) => {
         let tempTags = event.map(e => e.value)
-        // console.log('tags selected', tempTags)
 
         if (tempTags.includes("ishandicap")) {
             this.setState({
@@ -104,7 +103,7 @@ class NewBathroom extends Component {
     ratingChanged = (newRating) => {
         this.setState({
             rate: newRating
-        })
+        });
     }
 
     createNewBathroom = (event) => {
@@ -127,9 +126,9 @@ class NewBathroom extends Component {
             hasbaby_table: this.state.hasbaby_table,
         }
         
-        this.props.handleAddBathroom(newBathroom)
+        this.props.handleAddBathroom(newBathroom);
 
-        BathroomsApiService.postBathroom(newBathroom)
+        BathroomsApiService.postBathroom(newBathroom);
         
        this.props.history.push('/map');
 

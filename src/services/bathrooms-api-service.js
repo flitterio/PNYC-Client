@@ -1,4 +1,3 @@
-import { useImperativeHandle } from 'react';
 import config from '../config';
 import TokenService from './token-service';
 
@@ -106,4 +105,4 @@ import TokenService from './token-service';
       }
 }
 
-export default BathroomsApiService
+export default BathroomsApiService;

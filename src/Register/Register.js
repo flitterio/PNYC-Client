@@ -15,25 +15,23 @@ class Register extends Component {
      }
     
 togglePasswordVisiblity = () =>{
-    this.setState({passwordShown: !this.state.passwordShown })
+    this.setState({passwordShown: !this.state.passwordShown });
 }
 onRegistrationSuccess = () => {
     window.location.href='/sign-in'
 }
     handleSubmit = ev => {
-        ev.preventDefault()
+        ev.preventDefault();
  
         const { fname, lname, username, password} = ev.target
     
-        this.setState({ error: null })
+        this.setState({ error: null });
         AuthApiService.postUser({
             username: username.value.toLowerCase(),
             password: password.value,
             fname: fname.value,
             lname: lname.value,
         })
-    
-
         .then(user => {
             fname.value = ''
             lname.value = ''
@@ -45,8 +43,6 @@ onRegistrationSuccess = () => {
             console.log('res.error', res.error)
             this.setState({ error: res.error })
         })
-
-        
       }
     
 
