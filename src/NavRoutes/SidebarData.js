@@ -1,6 +1,4 @@
-import React, {useState} from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
+//navigation links
 
 export const SidebarData = [
     {
@@ -13,11 +11,6 @@ export const SidebarData = [
         path: '/map',
         cName:'nav-text'
     },
-    // {
-    //     title: 'New Bathroom',
-    //     path: '/new-bathroom',
-    //     cName:'nav-text'
-    // },
     {
         title: 'My Profile',
         path: '/my-profile',

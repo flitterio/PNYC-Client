@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import CommentForm from '../CommentForm/CommentForm'
+import CommentForm from '../CommentForm/CommentForm';
 import BathroomsApiService from '../services/bathrooms-api-service';
 import TokenService from '../services/token-service';
 import PopUp from '../PopUp/PopUp';
 import ReactStars from 'react-rating-stars-component';
-import './BathroomInfo.css'
+import './BathroomInfo.css';
 
 
  export default class BathroomInfo extends Component {
@@ -67,7 +67,7 @@ import './BathroomInfo.css'
           </ul>
         )}
       }
-
+//for popup
     togglePop = () => {
         this.setState(
             {popUp: !this.state.popUp}
@@ -94,19 +94,19 @@ import './BathroomInfo.css'
         const {bathroom_id} = this.props.match.params
         const { rating } = this.state
         BathroomsApiService.postRates(bathroom_id, rating)
-
-
         .catch(error => {
             console.error(error);
             this.setState({error});
         })
         window.location.reload();
     }
+
     handleAddComment = (newComment) => {
         this.setState({
             comments: [...this.state.comments, newComment]
         });
     }
+
     showCommentForm = () => {
     if(this.state.commentForm === true){
       return (

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-//import ApiContext from '../ApiContext';
 import './MyProfile.css';
 import User from '../User/User';
-import { Link } from 'react-router-dom';
 import TokenService from '../services/token-service';
 import config from '../config';
 import DeleteUser from '../DeleteUser/DeleteUser';

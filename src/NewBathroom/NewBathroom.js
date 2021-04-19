@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import './NewBathroom.css';
-//import {bathrooms} from '../bathrooms-helpers';
 import {tags} from '../options';
 import Select from 'react-select'
 import Hashids from 'hashids';
 import ReactStars from 'react-rating-stars-component';
-import BathroomsApiService from '../services/bathrooms-api-service'
-import './NewBathroom.css'
-import {withRouter} from 'react-router-dom'
+import BathroomsApiService from '../services/bathrooms-api-service';
+import './NewBathroom.css';
+import {withRouter} from 'react-router-dom';
 
 
 class NewBathroom extends Component {

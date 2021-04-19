@@ -10,7 +10,7 @@ import BathroomInfo from './BathroomInfo/BathroomInfo';
 import PrivateRoute from './Utils/PrivateRoute';
 import PublicOnlyRoute from './Utils/PublicOnlyRoute';
 import config from './config';
-import MyProfile from './MyProfile/MyProfile'
+import MyProfile from './MyProfile/MyProfile';
 import './App.css';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 

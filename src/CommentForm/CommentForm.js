@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import BathroomsApiService from '../services/bathrooms-api-service'
-import { Button, Textarea } from '../Utils/Utils'
-import './CommentForm.css'
+import React, { Component } from 'react';
+import BathroomsApiService from '../services/bathrooms-api-service';
+import { Button, Textarea } from '../Utils/Utils';
+import './CommentForm.css';
 
 export default class  extends Component {
   state ={

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Route} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom';
 import {GoogleMap, useLoadScript,  InfoWindow, Marker} from '@react-google-maps/api';
 import { formatRelative } from 'date-fns';
 import './MapPage.css';
@@ -49,7 +49,7 @@ export default function App(props) {
     const [currentLocation, setCurrentLocation] = React.useState(center);
     const [popUp, setPopUp] = React.useState(false);
 
-    
+   //establishes current location if allowed 
     React.useEffect (() => {
             navigator.geolocation.getCurrentPosition((position) => {
                 setCurrentLocation(
@@ -62,10 +62,12 @@ export default function App(props) {
              () => null, options);
     }, []);
 
+    //gets bathrooms from props for markers
     React.useEffect (() => {
            setMarkers(props.bathrooms)
     }, []);
 
+    //controls if popup is rendered 
     const renderPopUp = () => {
         if(popUp){
             return(
@@ -75,6 +77,7 @@ export default function App(props) {
             )
         }
     }
+
     const onMapClick = React.useCallback((event) => {
                 setTempLocation({
                     lat: event.latLng.lat(),
