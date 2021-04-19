@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch, Link, Router} from 'react-router-dom';
+import {Route, Switch, Link, Router, BrowserRouter} from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage';
 import MapPage from './MapPage/MapPage';
 import NewBathroom from './NewBathroom/NewBathroom';
@@ -75,44 +75,44 @@ class App extends Component {
 
   RenderMainRoutes() {
     return(
-      <>
-      <NavRoutes />
-      <Switch>
-          <Route  
-            exact
-            path='/'
-            component={LandingPage}
-          />
-          <Route 
-            path='/map' 
-            component={() => <MapPage bathrooms={this.state.bathrooms} handleNewBathroom={this.handleNewBathroom} />} 
-          />
-          <PublicOnlyRoute 
-              path='/sign-in' 
-              component={SignIn} 
-          />
-          <PublicOnlyRoute 
-              path='/register' 
-              component={Register} 
-              />
-          <PrivateRoute 
-            path='/new-bathroom' 
-            component={() => <NewBathroom tempLat={this.state.tempLat} tempLng={this.state.tempLng} handleAddBathroom={this.handleAddBathroom}/> } 
-          />
-          <PrivateRoute
-              path="/my-profile" 
-              component={MyProfile}
-          />
-          <Route
-            path='/not-found'
-            component={NotFoundPage}
-          />
-          <Route
-            path='/:bathroom_id'
-            component={BathroomInfo}
+      <BrowserRouter>
+        <NavRoutes />
+        <Switch>
+            <Route  
+              exact
+              path='/'
+              component={LandingPage}
             />
-      </Switch>
-      </>
+            <Route 
+              path='/map' 
+              component={() => <MapPage bathrooms={this.state.bathrooms} handleNewBathroom={this.handleNewBathroom} />} 
+            />
+            <PublicOnlyRoute 
+                path='/sign-in' 
+                component={SignIn} 
+            />
+            <PublicOnlyRoute 
+                path='/register' 
+                component={Register} 
+                />
+            <PrivateRoute 
+              path='/new-bathroom' 
+              component={() => <NewBathroom tempLat={this.state.tempLat} tempLng={this.state.tempLng} handleAddBathroom={this.handleAddBathroom}/> } 
+            />
+            <PrivateRoute
+                path="/my-profile" 
+                component={MyProfile}
+            />
+            <Route
+              path='/not-found'
+              component={NotFoundPage}
+            />
+            <Route
+              path='/:bathroom_id'
+              component={BathroomInfo}
+              />
+        </Switch>
+      </BrowserRouter>
     )
   }
   render(){

@@ -27,12 +27,6 @@ class NewBathroom extends Component {
 
     };
 
-    // handleStars = (event) => {
-    //     this.setState({
-    //         rate: event.target.value
-    //     });
-    // };
-
     toHex = (input) => {
         const hashids = new Hashids()
 
@@ -136,8 +130,7 @@ class NewBathroom extends Component {
         this.props.handleAddBathroom(newBathroom)
 
         BathroomsApiService.postBathroom(newBathroom)
-
-        //console.log('his.props.history', this.props.history)
+        
        this.props.history.push('/map');
 
     }
