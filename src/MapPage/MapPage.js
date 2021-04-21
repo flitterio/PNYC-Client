@@ -232,9 +232,7 @@ function Locate({panTo}) {
 function Help({setPopUp, popUp}) {
     return (
         <button className='help' 
-        // onClick={()=> {clickPopUp()}}
         onClick={() => setPopUp(!popUp)}
-        //why is this broken 
         >
             <img src='./info.png' alt ='extra help' />
         </button>
