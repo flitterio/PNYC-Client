@@ -1,9 +1,23 @@
-// NEED TO UPDATE WITH ERROR HANDLER FOR GEOLOCATION?
-// import { render, screen } from '@testing-library/react';
-// import MapPage from './MapPage.js';
+import React from 'react';
 
-// test('renders app', () => {
-//   render(<MapPage />);
-//   const linkElement = screen.getByText(/pnyc/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+// make the ReactDOM available, necessary for rendering the component
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+// make the App component available
+import MapPage from './MapPage.js';
+
+// this is the test case
+it('renders without crashing', () => {
+  // first create a DOM element to render the component into
+  const div = document.createElement('div');
+
+  // render the component, this is the actual test, if something is wrong it will fail here
+  ReactDOM.render(
+  <BrowserRouter>
+    <MapPage />
+  </BrowserRouter>, div);
+
+  // clean up code
+  ReactDOM.unmountComponentAtNode(div);
+});
